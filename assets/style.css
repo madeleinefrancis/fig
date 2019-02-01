@@ -1,0 +1,62 @@
+body {
+	background-color: lightgreen;
+}
+
+input {
+    text-align: center;
+    background: transparent;
+    /*border: none;*/
+    border-style: solid;
+    border-color: lightseagreen;
+}
+
+#fig-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.inner-button {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    position: absolute;
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    padding: 3px;
+}
+
+#add-person-button {
+	background-color: beige;
+}
+
+#add-meal-button {
+	background-color: lightpink;
+	top: 10vh;
+}
+
+.invisible {
+    display: none;
+}
+
+.visible {
+    display: inline-block;
+}
+
+.modal-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 10vh;
+    transform: translateX(-50%);
+    background-color: rgba(238, 245, 130);
+    height: 80vh;
+    width: 75vw;
+}
+
+.pref-column {
+    display: inline-block;
+    padding: 20px;
+    width: 200px;
+    height: 80vh;
+}
