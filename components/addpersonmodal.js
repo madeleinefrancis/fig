@@ -2,25 +2,34 @@
 var html = require('choo/html')
 
 module.exports = function (state, emit, id) {
-
   	return html`
 	  <div class="modal-wrapper ${state.personModal}">
 	    <div class="modal-content-wrapper">
 	    	<div class="modal-name-input"> 
 	    		${state.people[id] ? (state.people[id]["name"] ? listRow(state.people[id]["name"], "name") : showNameInput()) : showNameInput()}
 	    		</button>
-	    		<button id="cancel-add-person">
-	    			cancel
+	    		<button class="input-button" onclick=${addName}> 
+	    			<i class="material-icons">
+						done
+					</i>
 	    		</button>
-				<button id="complete-add-person">
-					done
-				</button>
+	    		<div id="complete-buttons">
+		    		<button id="cancel-add-person" onclick=${cancel}>
+		    			cancel
+		    		</button>
+					<button id="complete-add-person" onclick=${complete}>
+						done
+					</button>
+				</div>
 	    	</div>
 	    	<div class="food-prefs">
 		    	<div class="pref-column">
 		    		<div class="">
 			    		<input id="likes-input" placeholder="likes">
 			    		<button class="input-button" onclick=${addLike}> 
+			    			<i class="material-icons">
+								done
+							</i>
 			    		</button>
 		    		</div>
 		    		<div class="pref-list">
@@ -31,6 +40,9 @@ module.exports = function (state, emit, id) {
 		    		<div class="">
 			    		<input id="dislikes-input" placeholder="dislikes">
 			    		<button class="input-button" onclick=${addDislike}> 
+			    			<i class="material-icons">
+								done
+							</i>
 			    		</button>
 		    		</div>
 		    		<div class="pref-list">
@@ -40,7 +52,10 @@ module.exports = function (state, emit, id) {
 		    	<div class="pref-column">
 		    		<div class="">
 						<input id="restrictions-input" placeholder="restrictions">
-			    		<button class="input-button" onclick=${addRestriction}> 			    			
+			    		<button class="input-button" onclick=${addRestriction}> 	
+			    			<i class="material-icons">
+								done
+							</i>	    			
 			    		</button>
 		    		</div>
 		    		<div class="pref-list">
@@ -56,6 +71,12 @@ module.exports = function (state, emit, id) {
 		var input = document.getElementById('name-input')
 		var value = input.value
 		if (value.length > 0) {
+			for (var key in state.people) {
+				if (state.people[key]["name"] === value) {
+					alert("a person with this name already exists")
+					return
+				}
+			}
 			state.people[id]["name"] = value
 			// DIFFERENT STYLING FOR SET NAME
 			emit("row added")
@@ -143,6 +164,20 @@ module.exports = function (state, emit, id) {
 			emit("row added")
 			input.value = ""
 		}
+	}
+
+	function cancel() {
+		delete state.people[id]
+		emit("person modal canceled")
+	}
+
+	function complete() {
+		if (!state.people[id]["name"]) {
+			alert("please add a name")
+			return
+		}
+		state.peopleNames.push(state.people[id]["name"]) 
+		emit("person complete")
 	}
 }
 

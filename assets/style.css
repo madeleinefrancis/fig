@@ -5,9 +5,20 @@ body {
 input {
     text-align: center;
     background: transparent;
-    /*border: none;*/
-    border-style: solid;
-    border-color: lightseagreen;
+    border-color: black;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid;
+}
+
+button {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+span {
+    
 }
 
 #fig-wrapper {
@@ -28,12 +39,26 @@ input {
 }
 
 #add-person-button {
-	background-color: beige;
+	background-color: lightgray;
 }
 
 #add-meal-button {
 	background-color: lightpink;
 	top: 10vh;
+}
+
+#people-button {
+    background-color: lightblue;
+    top: 30vh;
+}
+
+#meals-button {
+    background-color: beige;
+    top: 20vh;
+}
+
+#complete-buttons {
+    display: inline-block;
 }
 
 .invisible {
@@ -49,14 +74,54 @@ input {
     left: 50%;
     top: 10vh;
     transform: translateX(-50%);
-    background-color: rgba(238, 245, 130);
+    background-color: rgba(212, 255, 152, 0.4);
     height: 80vh;
     width: 75vw;
+}
+
+.modal-content-wrapper {
+    position: absolute;
+    left: 10vw;
+    padding-top: 5vh;
+}
+
+.modal-name-input {
+    display: inline-block;
+}
+
+#meal-name-entry {
+    display: inline-block;
+}
+
+#meal-modal-content-wrapper {
+    left: 0vw;
+}
+
+#member-columns {
+    position: absolute;
+    top: 20vh;
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.column {
+    display: inline-block;
+    width: 50%;
+
+}
+
+#date-container {
+    display: inline-block;
+}
+
+.food-prefs {
+    margin-top: 10vh;
 }
 
 .pref-column {
     display: inline-block;
     padding: 20px;
-    width: 200px;
+    width:33.33333333%;
     height: 80vh;
 }
