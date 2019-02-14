@@ -29,8 +29,6 @@ module.exports = function (state, emit, id) {
 	    		<div class="column" id="meal-members-column">
 	    			Guests
 	    			<ul class="connectedSortable" id="sortable1">
-	    				<li>item</li>
-	    				<li>item2</li>
 	    			</ul>
 	    		</div>
 	    		<div class="column" id="all-members-column">
