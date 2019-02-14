@@ -16,7 +16,7 @@ app.use(function (state) {
   // initialize state
   state.people = {}
   state.meals = {}
-  state.peopleNames = []
+  state.peopleNames = ["james", "jangs", "pains"]
   state.personModal = 'invisible'
   state.mealModal = 'invisible'
 })

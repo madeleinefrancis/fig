@@ -82,18 +82,38 @@ function store (state, emitter) {
 	})
 
 	emitter.on('render', function(data) {
-		setTimeout(function() {
-			var datePicker = new Pikaday(
-		    {
-		        field: document.getElementById('datepicker'),
-		        firstDay: 1,
-		        minDate: new Date(),
-		        maxDate: new Date(2020, 12, 31),
-		        yearRange: [2019,2020],
-		        onSelect: function() {
-		       		state.meals[data["id"]]["date"]	= this.getDate()
-		        }
-		    });
-		}, 1000)
+		if (data) {
+			if (data["component"] === "meal modal") {
+				setTimeout( function() {
+					var datePicker = new Pikaday(
+				    {
+				        field: document.getElementById('datepicker'),
+				        firstDay: 1,
+				        minDate: new Date(),
+				        maxDate: new Date(2020, 12, 31),
+				        yearRange: [2019,2020],
+				        onSelect: function() {
+				       		state.meals[data["id"]]["date"]	= this.getDate()
+				        }
+				    });
+
+			    	$('#sortable1, #sortable2').sortable({
+						helper: "clone",
+						placeholder: "selected-option",
+						forcePlaceholderSize: true,
+						dropOnEmpty: true,
+						revert: true,
+						connectWith: '.connectedSortable',
+						tolerance: "pointer",
+						cursor: "move",
+						beforeStop: function (event, ui) {
+							if($(ui.helper).parent().attr('id') === 'sortable2' && $(ui.placeholder).parent().attr('id') === 'sortable2')
+								return false; 
+						}
+					});		
+
+				}, 1000)
+			}
+		}
 	})
 }

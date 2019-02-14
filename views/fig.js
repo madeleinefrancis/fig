@@ -22,6 +22,8 @@ function fig(state, emit) {
 			<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 			<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 			<script src="assets/pikaday/pikaday.js"></script>
+			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	    	<div onclick=${addPersonModal}>
 	    		${addPerson()}
 	    	</div>

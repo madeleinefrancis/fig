@@ -14,7 +14,7 @@ module.exports = function (state, emit, id) {
 						done
 					</button>
 				</div>
-	    		${state.meals[id] ? (state.meals[id]["name"] ? listRow(state.meals[id]["name"], "name") : showNameInput()) : showNameInput()}
+	    		${state.meals[id] ? (state.meals[id]["name"] ? listRow(state.meals[id]["name"]) : showNameInput()) : showNameInput()}
 	    		</button>
 	    		<button class="input-button" onclick=${addName}> 
 	    			<i class="material-icons">
@@ -28,9 +28,15 @@ module.exports = function (state, emit, id) {
 	    	<div id="member-columns">
 	    		<div class="column" id="meal-members-column">
 	    			Guests
+	    			<ul class="connectedSortable" id="sortable1">
+	    				<li>item</li>
+	    				<li>item2</li>
+	    			</ul>
 	    		</div>
 	    		<div class="column" id="all-members-column">
-	    			${state.peopleNames.map(listRow)}
+	    			<ul class="connectedSortable" id="sortable2">
+	    				${state.peopleNames.map(listRow)}
+	    			</ul>
 	    		</div>
 	    	</div>
 	    </div>
@@ -45,13 +51,11 @@ module.exports = function (state, emit, id) {
     	</div>`
 	}
 
-	function listRow(content, column) {
+	function listRow(content) {
 		return html`
-		<div onclick=${deleteItem}>	
-		  <span class="list-row">
+		  <li class="list-row">
 			${content}
-		  </span>
-		</div>
+		  </li>
 		  `
 	}
 
