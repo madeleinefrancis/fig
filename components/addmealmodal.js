@@ -33,7 +33,7 @@ module.exports = function (state, emit, id) {
 	    		</div>
 	    		<div class="column" id="all-members-column">
 	    			<ul class="connectedSortable" id="sortable2">
-	    				${state.peopleNames.map(listRow)}
+	    				${state.alphNameIDs.map(listRow)}
 	    			</ul>
 	    		</div>
 	    	</div>
@@ -43,18 +43,18 @@ module.exports = function (state, emit, id) {
 
 	function showNameInput() {
   		return html
-		`<div id="meal-name-entry">
-    		<input id="meal-name-input" placeholder="name">
-    		<button class="input-button" onclick=${addName}> 
-    	</div>`
+			`<div id="meal-name-entry">
+	    		<input id="meal-name-input" placeholder="name">
+	    		<button class="input-button" onclick=${addName}> 
+	    	</div>`
 	}
 
 	function listRow(content) {
 		return html`
-		  <li class="list-row">
-			${content}
-		  </li>
-		  `
+			<li class="list-row">
+				${state.people[content]["namef"]}
+			</li>
+			`
 	}
 
 	function deleteItem(event) {
@@ -98,8 +98,16 @@ module.exports = function (state, emit, id) {
 		if (!state.meals[id]["name"]) {
 			alert("please add a name")
 			return
-		}
+		} 
+		addMembers()
 		emit("meal complete")
+	}
+
+	function addMembers() {
+		var listItems = $("#sortable1 li");
+		listItems.each(function(i, li) {
+			console.log(li.innerHTML);
+		});
 	}
 }
 

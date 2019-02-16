@@ -3,16 +3,31 @@ module.exports = store
 function store (state, emitter) {
   state.totalClicks = 0
 
-  emitter.on('DOMContentLoaded', function () {
-    emitter.on('add person modal', function (data) {
-		state.personModal = 'visible';
-		state.people[data] = {}
-		state.people[data]["likes"] = []
-		state.people[data]["dislikes"] = []
-		state.people[data]["restrictions"] = []
-		emitter.emit(state.events.RENDER)
-    })
-  })
+	emitter.on('DOMContentLoaded', function () {
+		emitter.on('add person modal', function (data) {
+			state.personModal = 'visible';
+			state.people[data] = {}
+			state.people[data]["likes"] = []
+			state.people[data]["dislikes"] = []
+			state.people[data]["restrictions"] = []
+			emitter.emit(state.events.RENDER)
+		})
+	})
+
+  	emitter.on("sort people array", function(newID, newName) {
+  		if (state.alphNameIDs.length === 0 ) {
+  			state.alphNameIDs.push(newID)
+  		} else {
+	  		for (var i = 0; i < state.alphNameIDs.length; i++ ) {
+	  			if (newName < state.people[state.alphNameIDs[i]]["name"]) {
+					  state.alphNameIDs.splice(i, 0, newID)
+		              return
+		        }
+	  		}
+	  		state.alphNameIDs.push(newID) 
+  		}
+  	})
+
 	emitter.on('DOMContentLoaded', function () {
 	    emitter.on('modal canceled', function () {
 			state.personModal = 'invisible';

@@ -176,8 +176,7 @@ module.exports = function (state, emit, id) {
 			alert("please add a name")
 			return
 		}
-		state.peopleNames.push(state.people[id]["name"])
-		state.peopleNames.sort() 
+		emit("sort people array", id, state.people[id]["name"])
 		emit("person complete")
 	}
 }

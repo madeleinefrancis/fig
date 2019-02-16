@@ -15,12 +15,13 @@ app.use(require('./stores/modals'))
 app.use(function (state) {
   // initialize state
   state.people = {}
+  state.alphNameIDs = []
+
   state.meals = {}
-  state.peopleNames = ["james", "jangs", "pains"]
+  
   state.personModal = 'invisible'
   state.mealModal = 'invisible'
 })
-
 
 app.route('/', require('./views/main'))
 app.route('/fig', require('./views/fig'))
