@@ -6,6 +6,8 @@ var personModal = require('../components/addpersonmodal.js');
 var mealModal = require('../components/addmealmodal.js');
 var mealsButton = require('../components/mealsbutton.js');
 var peopleButton = require('../components/peoplebutton.js');
+var mealsView = require('../components/mealsview.js');
+var peopleView = require('../components/peopleview.js');
 
 var TITLE = 'fig'
 
@@ -43,6 +45,12 @@ function fig(state, emit) {
 	    	<div>
 	    		${mealModal(state, emit, Object.keys(state.meals).length - 1)}
 	    	</div>
+	    	<div>
+	    		${mealsView(state)}
+	    	</div>
+	    	<div>
+	    		${peopleView(state)}
+	    	</div>
 	    </div>
     </body>
   `
@@ -53,10 +61,11 @@ function fig(state, emit) {
 			emit('close person modal')
 		}
 
-		if (state.mealModal === 'visible') {
-			emit('close meal modal')
-		}
+		emit('close meal modal')
+		emit('close meals view')
+		emit('close people view')
 	}
+
 	function addMealModal() {
 		if (state.mealModal === 'invisible') {
     		emit('add meal modal', Object.keys(state.meals).length)
@@ -64,14 +73,32 @@ function fig(state, emit) {
 			emit('close meal modal')
 		}
 
-		if (state.personModal === 'visible') {
-			emit('close person modal')
-		}
+		emit('close person modal')
+		emit('close meals view')
+		emit('close people view')
 	}
+
 	function showMeals() {
+		if (state.mealsView === 'invisible') {
+			emit("open meals view")
+		} else {
+			emit("close meals view")
+		}
 
+		emit('close person modal')
+		emit('close meal modal')
+		emit('close people view')
 	}
-	function showPeople() {
 
+	function showPeople() {
+		if (state.peopleView === 'invisible') {
+			emit("open people view")
+		} else {
+			emit("close people view")
+		}
+
+		emit('close person modal')
+		emit('close meals view')
+		emit('close meal modal')
 	}
 }

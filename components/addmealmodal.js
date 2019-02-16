@@ -14,13 +14,7 @@ module.exports = function (state, emit, id) {
 						done
 					</button>
 				</div>
-	    		${state.meals[id] ? (state.meals[id]["name"] ? listRow(state.meals[id]["name"]) : showNameInput()) : showNameInput()}
-	    		</button>
-	    		<button class="input-button" onclick=${addName}> 
-	    			<i class="material-icons">
-						done
-					</i>
-	    		</button>
+	    		${showNameInput()}
 		    	<div id="date-container">
 	    			<input type="text" class="datepicker" id="datepicker">
 		    	</div>
@@ -45,8 +39,15 @@ module.exports = function (state, emit, id) {
   		return html
 			`<div id="meal-name-entry">
 	    		<input id="meal-name-input" placeholder="name">
-	    		<button class="input-button" onclick=${addName}> 
 	    	</div>`
+	}
+
+	function nameRow(name) {
+		return html`
+			<span>
+				${name}
+			</span>
+		`
 	}
 
 	function listRow(content) {
@@ -72,8 +73,17 @@ module.exports = function (state, emit, id) {
 		`
 	}
 
-	function addName() {
-  		var input = document.getElementById('meal-name-input')
+	function cancel() {
+		delete state.meals[id]
+		emit("meal modal canceled")
+	}
+
+	function complete() {
+		var input = document.getElementById('meal-name-input')
+		if (!input.value) {
+			alert("please add a name")
+			return
+		}
 		var value = input.value
 		if (value.length > 0) {
 			for (var key in state.meals) {
@@ -83,23 +93,9 @@ module.exports = function (state, emit, id) {
 				}
 			}
 			state.meals[id]["name"] = value
-			// DIFFERENT STYLING FOR SET NAME
-			emit("row added")
-			input.value = ""
-		}
-	}
-
-	function cancel() {
-		delete state.meals[id]
-		emit("meal modal canceled")
-	}
-
-	function complete() {
-		// if (!state.meals[id]["name"]) {
-		// 	alert("please add a name")
-		// 	return
-		// } 
+		} 
 		addMembers()
+		emit("sort meals array", id)
 		emit("meal complete")
 	}
 

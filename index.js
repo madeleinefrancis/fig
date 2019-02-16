@@ -18,9 +18,13 @@ app.use(function (state) {
   state.alphNameIDs = []
 
   state.meals = {}
-  
+  state.mealsWDatesIDs = []
+  state.alphaMealIDs = []
+
   state.personModal = 'invisible'
   state.mealModal = 'invisible'
+  state.mealsView = 'invisible'
+  state.peopleView = 'invisible'
 })
 
 app.route('/', require('./views/main'))

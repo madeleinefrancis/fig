@@ -28,6 +28,36 @@ function store (state, emitter) {
   		}
   	})
 
+  	emitter.on("sort meals array", function(newID) {
+		if (state.meals[newID]["date"]) {
+			if (state.mealsWDatesIDs.length === 0 ) {
+				state.mealsWDatesIDs.push(newID)
+			} else {
+				var newDate = state.meals[newID]["date"]
+				for (var i = 0; i < state.mealsWDatesIDs; i++) {
+					if (newDate < state.meals[state.mealsWDatesIDs[i]]["date"]) {
+						state.mealsWDatesIDs.splice(i, 0, newID)
+						return
+					}
+				}
+				state.alphaMealIDs.push(newID)
+			}
+		} else {
+			if (state.alphaMealIDs.length === 0 ) {
+				state.alphaMealIDs.push(newID)
+			} else {
+				var newName = state.meals[newID]["name"]
+				for (var i = 0; i < state.alphaMealIDs; i++) {
+					if (newDate < state.meals[state.alphaMealIDs[i]]["name"]) {
+						state.alphaMealIDs.splice(i, 0, newID)
+						return
+					}
+				}
+				state.alphaMealIDs.push(newID)
+			}
+		}
+  	})  	
+
 	emitter.on('DOMContentLoaded', function () {
 	    emitter.on('modal canceled', function () {
 			state.personModal = 'invisible';
@@ -49,6 +79,33 @@ function store (state, emitter) {
 	    })
 	})
 
+	emitter.on('DOMContentLoaded', function() {
+		emitter.on('open meals view', function() {
+			state.mealsView = 'visible'
+			emitter.emit(state.events.RENDER)
+		})
+	})	
+
+	emitter.on('DOMContentLoaded', function() {
+		emitter.on('close meals view', function() {
+			state.mealsView = 'invisible'
+			emitter.emit(state.events.RENDER)
+		})
+	})
+	
+	emitter.on('DOMContentLoaded', function() {
+		emitter.on('open people view', function() {
+			state.peopleView = 'visible'
+			emitter.emit(state.events.RENDER)
+		})
+	})
+
+	emitter.on('DOMContentLoaded', function() {
+		emitter.on('close people view', function() {
+			state.peopleView = 'invisible'
+			emitter.emit(state.events.RENDER)
+		})
+	})
 
 	emitter.on('DOMContentLoaded', function () {
 		emitter.on('row added', function () {
@@ -67,7 +124,7 @@ function store (state, emitter) {
 	    })
 	})
 	emitter.on('DOMContentLoaded', function () {
-	    emitter.on('person complete', function () {
+	    emitter.on('people complete', function () {
 	    	state.personModal = 'invisible'
 			emitter.emit(state.events.RENDER)
 	    })
@@ -108,7 +165,9 @@ function store (state, emitter) {
 				        maxDate: new Date(2020, 12, 31),
 				        yearRange: [2019,2020],
 				        onSelect: function() {
+				        	console.log("wtf")
 				       		state.meals[data["id"]]["date"]	= this.getDate()
+				       		datePicker.destroy()
 				        }
 				    });
 
