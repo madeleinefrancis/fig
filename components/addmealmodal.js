@@ -51,7 +51,7 @@ module.exports = function (state, emit, id) {
 
 	function listRow(content) {
 		return html`
-			<li class="list-row">
+			<li class="list-row" index=${content}>
 				${state.people[content]["name"]}
 			</li>
 			`
@@ -95,10 +95,10 @@ module.exports = function (state, emit, id) {
 	}
 
 	function complete() {
-		if (!state.meals[id]["name"]) {
-			alert("please add a name")
-			return
-		} 
+		// if (!state.meals[id]["name"]) {
+		// 	alert("please add a name")
+		// 	return
+		// } 
 		addMembers()
 		emit("meal complete")
 	}
@@ -106,7 +106,7 @@ module.exports = function (state, emit, id) {
 	function addMembers() {
 		var listItems = $("#sortable1 li");
 		listItems.each(function(i, li) {
-			console.log(li.innerHTML);
+			state.meals[id]["members"].push(state.people[li.getAttribute("index")])
 		});
 	}
 }

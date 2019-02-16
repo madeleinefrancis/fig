@@ -77,7 +77,7 @@ function store (state, emitter) {
 	    emitter.on('add meal modal', function (data) {
 			state.mealModal = 'visible';
 			state.meals[data] = {}
-			state.meals[data]["members"] = {}
+			state.meals[data]["members"] = []
 			emitter.emit(state.events.RENDER, {component: "meal modal", id: data})
 	    })
 	})
