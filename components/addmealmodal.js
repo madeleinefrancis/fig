@@ -52,7 +52,7 @@ module.exports = function (state, emit, id) {
 	function listRow(content) {
 		return html`
 			<li class="list-row">
-				${state.people[content]["namef"]}
+				${state.people[content]["name"]}
 			</li>
 			`
 	}
