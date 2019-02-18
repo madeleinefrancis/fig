@@ -29,12 +29,13 @@ function store (state, emitter) {
   	})
 
   	emitter.on("sort meals array", function(newID) {
+  		debugger
 		if (state.meals[newID]["date"]) {
 			if (state.mealsWDatesIDs.length === 0 ) {
 				state.mealsWDatesIDs.push(newID)
 			} else {
 				var newDate = state.meals[newID]["date"]
-				for (var i = 0; i < state.mealsWDatesIDs; i++) {
+				for (var i = 0; i < state.mealsWDatesIDs.length; i++) {
 					if (newDate < state.meals[state.mealsWDatesIDs[i]]["date"]) {
 						state.mealsWDatesIDs.splice(i, 0, newID)
 						return
@@ -47,8 +48,8 @@ function store (state, emitter) {
 				state.alphaMealIDs.push(newID)
 			} else {
 				var newName = state.meals[newID]["name"]
-				for (var i = 0; i < state.alphaMealIDs; i++) {
-					if (newDate < state.meals[state.alphaMealIDs[i]]["name"]) {
+				for (var i = 0; i < state.alphaMealIDs.length; i++) {
+					if (newName < state.meals[state.alphaMealIDs[i]]["name"]) {
 						state.alphaMealIDs.splice(i, 0, newID)
 						return
 					}
