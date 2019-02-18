@@ -113,6 +113,7 @@ function store (state, emitter) {
 		state.personModal = 'invisible'
 		state.peopleView = 'invisible'
 		state.mealsView = 'invisible'
+		if (state.datePicker) state.datePicker.destroy()
 	})
 
 	emitter.on('DOMContentLoaded', function () {
@@ -158,6 +159,7 @@ function store (state, emitter) {
 	emitter.on('DOMContentLoaded', function () {
 	    emitter.on('meal modal canceled', function () {
 	    	state.mealModal = 'invisible'
+	    	state.datePicker.destroy()
 			emitter.emit(state.events.RENDER)
 	    })
 	})
@@ -174,9 +176,7 @@ function store (state, emitter) {
 				        maxDate: new Date(2020, 12, 31),
 				        yearRange: [2019,2020],
 				        onSelect: function() {
-				        	console.log("wtf")
 				       		state.meals[data["id"]]["date"]	= this.getDate()
-				       		datePicker.destroy()
 				        }
 				    });
 
