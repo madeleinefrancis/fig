@@ -75,6 +75,7 @@ function store (state, emitter) {
 	emitter.on('DOMContentLoaded', function () {
 	    emitter.on('close meal modal', function () {
 	    	state.mealModal = 'invisible'
+	    	state.datePicker.destroy()
 			emitter.emit(state.events.RENDER)
 	    })
 	})
@@ -105,6 +106,13 @@ function store (state, emitter) {
 			state.peopleView = 'invisible'
 			emitter.emit(state.events.RENDER)
 		})
+	})
+
+	emitter.on('close all views', function() {
+		state.mealModal = 'invisible'
+		state.personModal = 'invisible'
+		state.peopleView = 'invisible'
+		state.mealsView = 'invisible'
 	})
 
 	emitter.on('DOMContentLoaded', function () {
@@ -142,6 +150,7 @@ function store (state, emitter) {
 	emitter.on('DOMContentLoaded', function () {
 	    emitter.on('meal complete', function () {
 	    	state.mealModal = 'invisible'
+	    	state.datePicker.destroy()
 			emitter.emit(state.events.RENDER)
 	    })
 	})
@@ -170,6 +179,8 @@ function store (state, emitter) {
 				       		datePicker.destroy()
 				        }
 				    });
+
+				    state.datePicker = datePicker
 
 			    	$('#sortable1, #sortable2').sortable({
 						helper: "clone",

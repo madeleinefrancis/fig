@@ -56,49 +56,37 @@ function fig(state, emit) {
   `
 	function addPersonModal() {
 		if (state.personModal === 'invisible') {
+			emit('close all views')
 			emit('add person modal', Object.keys(state.people).length)
 		} else {
 			emit('close person modal')
 		}
-
-		emit('close meal modal')
-		emit('close meals view')
-		emit('close people view')
 	}
 
 	function addMealModal() {
 		if (state.mealModal === 'invisible') {
+			emit('close all views')
     		emit('add meal modal', Object.keys(state.meals).length)
 		} else {
 			emit('close meal modal')
 		}
-
-		emit('close person modal')
-		emit('close meals view')
-		emit('close people view')
 	}
 
 	function showMeals() {
 		if (state.mealsView === 'invisible') {
+			emit('close all views')
 			emit("open meals view")
 		} else {
 			emit("close meals view")
 		}
-
-		emit('close person modal')
-		emit('close meal modal')
-		emit('close people view')
 	}
 
 	function showPeople() {
 		if (state.peopleView === 'invisible') {
+			emit('close all views')
 			emit("open people view")
 		} else {
 			emit("close people view")
 		}
-
-		emit('close person modal')
-		emit('close meals view')
-		emit('close meal modal')
 	}
 }
