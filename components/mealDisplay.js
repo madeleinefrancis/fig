@@ -13,7 +13,7 @@ module.exports = function (state, emit) {
   		<div class="modal-wrapper meal-display">
             <div class="display-meal-name">
                 ${state.meals[id]['name']}
-                <div>
+                <div onclick=${closeMeal}>
                     x
                 </div>
             </div>
@@ -54,10 +54,14 @@ module.exports = function (state, emit) {
   		</div>
   		`
 
+        function closeMeal () {
+            emit('close meal display')
+        }
+
         function memberRow (memberID) {
             return html`
                 <div>
-                    ${state.people[memberID]['name']}
+                    ${memberRow['name']}
                 </div>
             `
         }
@@ -74,7 +78,7 @@ module.exports = function (state, emit) {
             var likesList = {}
             var alphLikes = []
             for (var i = 0; i < state.meals[id]['members'].length; i++) {   
-                var person = state.people[state.meals[id]['members'][i]]
+                var person = state.meals[id]['members'][i]
                 var likes = person['likes']
                 for (var j = 0; j < likes.length; j++) {
                     if (likes[j] in likesList) {
@@ -95,7 +99,7 @@ module.exports = function (state, emit) {
             var dislikesList = {}
             var alphDislikes = []
             for (var i = 0; i < state.meals[id]['members'].length; i++) {
-                var person = state.people[state.meals[id]['members'][i]]
+                var person = state.meals[id]['members'][i]
                 var dislikes = person['dislikes']
                 for (var j = 0; j < dislikes.length; j++) {
                     if (dislikes[j] in dislikesList) {
@@ -116,7 +120,7 @@ module.exports = function (state, emit) {
             var restrictionsList = {}
             var alphRestrictions = []
             for (var i = 0; i < state.meals[id]['members'].length; i++) {
-                var person = state.people[state.meals[id]['members'][i]]
+                var person = state.meals[id]['members'][i]
                 var restrictions = person['restrictions']
                 for (var j = 0; j < restrictions.length; j++) {
                     if (restrictions[j] in restrictionsList) {

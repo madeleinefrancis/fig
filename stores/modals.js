@@ -170,6 +170,11 @@ function store (state, emitter) {
 	    })
 	})
 
+	emitter.on('close meal display', function() {
+		state.mealDisplay['display'] = false
+		emitter.emit(state.events.RENDER)
+	})
+
 	emitter.on('render', function(data) {
 		if (data) {
 			if (data["component"] === "meal modal") {
