@@ -29,7 +29,6 @@ function store (state, emitter) {
   	})
 
   	emitter.on("sort meals array", function(newID) {
-  		debugger
 		if (state.meals[newID]["date"]) {
 			if (state.mealsWDatesIDs.length === 0 ) {
 				state.mealsWDatesIDs.push(newID)
@@ -57,6 +56,12 @@ function store (state, emitter) {
 				state.alphaMealIDs.push(newID)
 			}
 		}
+  	})
+
+  	emitter.on('display meal', function(data){
+  		state.mealDisplay['display'] = true
+  		state.mealDisplay['id'] = data
+  		emitter.emit(state.events.RENDER)
   	})  	
 
 	emitter.on('DOMContentLoaded', function () {

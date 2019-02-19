@@ -8,6 +8,8 @@ var mealsButton = require('../components/mealsbutton.js');
 var peopleButton = require('../components/peoplebutton.js');
 var mealsView = require('../components/mealsview.js');
 var peopleView = require('../components/peopleview.js');
+var mealDisplay = require('../components/mealDisplay.js');
+
 
 var TITLE = 'fig'
 
@@ -46,14 +48,18 @@ function fig(state, emit) {
 	    		${mealModal(state, emit, Object.keys(state.meals).length - 1)}
 	    	</div>
 	    	<div>
-	    		${mealsView(state)}
+	    		${mealsView(state, emit)}
 	    	</div>
 	    	<div>
-	    		${peopleView(state)}
+	    		${peopleView(state, emit)}
+	    	</div>
+	    	<div>
+	    		${state.mealDisplay['display'] ? mealDisplay(state, emit) : console.log('')}
 	    	</div>
 	    </div>
     </body>
   `
+
 	function addPersonModal() {
 		if (state.personModal === 'invisible') {
 			emit('close all views')

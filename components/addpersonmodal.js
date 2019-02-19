@@ -177,7 +177,7 @@ module.exports = function (state, emit, id) {
 			return
 		}
 		emit("sort people array", id, state.people[id]["name"])
-		emit("person complete")
+		emit("close person modal")
 	}
 }
 

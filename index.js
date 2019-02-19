@@ -14,17 +14,20 @@ app.use(require('./stores/clicks'))
 app.use(require('./stores/modals'))
 app.use(function (state) {
   // initialize state
-  state.people = {}
-  state.alphNameIDs = []
+  state.people = {0: {likes:["coffee", "tea"], dislikes:['peas', 'oranges'], restrictions:['dairy'], name:"a"}, 1: {likes:["carrots", "tea"], dislikes:['mash', 'oranges'], restrictions:['seafood', 'wheat', 'dairy'], name:"b"}}
+  // state.people = {}
+  state.alphNameIDs = [0,1]
 
-  state.meals = {}
+  state.meals = {0: {members:[0,1], name: 'abc'}}
   state.mealsWDatesIDs = []
-  state.alphaMealIDs = []
+  state.alphaMealIDs = [0]
 
   state.personModal = 'invisible'
   state.mealModal = 'invisible'
   state.mealsView = 'invisible'
   state.peopleView = 'invisible'
+
+  state.mealDisplay = {}
 })
 
 app.route('/', require('./views/main'))
