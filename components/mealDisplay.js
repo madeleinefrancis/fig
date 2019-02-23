@@ -58,7 +58,7 @@ module.exports = function (state, emit) {
             emit('close meal display')
         }
 
-        function memberRow (memberID) {
+        function memberRow (memberRow) {
             return html`
                 <div>
                     ${memberRow['name']}

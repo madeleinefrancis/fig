@@ -164,6 +164,8 @@ module.exports = function (state, emit, id) {
 		if (!input.value) {
 			alert("please add a name")
 			return
+		} else {
+			state.people[id]["name"] = input.value
 		}
 		emit("sort people array", id, state.people[id]["name"])
 		emit("close person modal")
