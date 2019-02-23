@@ -6,12 +6,7 @@ module.exports = function (state, emit, id) {
 	  <div class="modal-wrapper ${state.personModal}">
 	    <div class="modal-content-wrapper">
 	    	<div class="modal-name-input"> 
-	    		${state.people[id] ? (state.people[id]["name"] ? listRow(state.people[id]["name"], "name") : showNameInput()) : showNameInput()}
-	    		</button>
-	    		<button class="input-button" onclick=${addName}> 
-	    			<i class="material-icons">
-						done
-					</i>
+	    		${state.people[id] ? (state.people[id]["name"] ? showNameInput(true) : showNameInput(false)) : showNameInput(false)}
 	    		</button>
 	    		<div id="complete-buttons">
 		    		<button id="cancel-add-person" onclick=${cancel}>
@@ -67,28 +62,10 @@ module.exports = function (state, emit, id) {
 	  </div>
 	  `
 
-	function addName() {
-		var input = document.getElementById('name-input')
-		var value = input.value
-		if (value.length > 0) {
-			for (var key in state.people) {
-				if (state.people[key]["name"] === value) {
-					alert("a person with this name already exists")
-					return
-				}
-			}
-			state.people[id]["name"] = value
-			// DIFFERENT STYLING FOR SET NAME
-			emit("row added")
-			input.value = ""
-		}
-	}
-
-	function showNameInput() {
+	function showNameInput(hasName) {
 		return html
 			`<div id="name-entry">
-	    		<input id="name-input" placeholder="name">
-	    		<button class="input-button" onclick=${addName}> 
+	    		<input id="name-input" placeholder="name" value=${hasName ? state.people[id]["name"] : ""}>
 	    	</div>`
 	}
 
@@ -103,6 +80,13 @@ module.exports = function (state, emit, id) {
 		  </span>
 		</div>
 		  `
+	}
+
+	function checkForName() {
+		var input = document.getElementById('name-input')
+		if (input.value) {
+			state.people[id]["name"] = input.value
+		}
 	}
 
 	function deleteItem(event) {
@@ -130,6 +114,7 @@ module.exports = function (state, emit, id) {
 		var input = document.getElementById(type + "-input")
 		var value = input.value
 		if (value.length > 0) {
+			checkForName()
 			state.people[id][type] = value
 			emit("row added")
 			input.value = ""
@@ -140,6 +125,7 @@ module.exports = function (state, emit, id) {
 		var input = document.getElementById('likes-input')
 		var value = input.value
 		if (value.length > 0) {
+			checkForName()
 			state.people[id]["likes"].push(value)
 			emit("row added");
 			input.value = ""
@@ -150,6 +136,7 @@ module.exports = function (state, emit, id) {
 		var input = document.getElementById('dislikes-input')
 		var value = input.value
 		if (value.length > 0) {
+			checkForName()
 			state.people[id]["dislikes"].push(value)
 			emit("row added")
 			input.value = ""
@@ -160,6 +147,7 @@ module.exports = function (state, emit, id) {
 		var input = document.getElementById('restrictions-input')
 		var value = input.value
 		if (value.length > 0) {
+			checkForName()
 			state.people[id]["restrictions"].push(value)
 			emit("row added")
 			input.value = ""
@@ -172,7 +160,8 @@ module.exports = function (state, emit, id) {
 	}
 
 	function complete() {
-		if (!state.people[id]["name"]) {
+		var input = document.getElementById('name-input')
+		if (!input.value) {
 			alert("please add a name")
 			return
 		}
