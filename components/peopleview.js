@@ -19,19 +19,19 @@ module.exports = function (state, emit) {
 
 	function listRow(content) {
 		return html`
-			<li class="list-row">
+			<div >
 				<div personID=${content} onclick=${displayPerson}>
 					${state.people[content]["name"]}
 				</div>
-                <div class="deletable-list-column" id=${content} onclick=${deletePerson}>
+                <div class="deletable-list-column" index=${content} onclick=${deletePerson}>
                     X
                 </div>
-			</li>
+			</div>
 			`
 	}
 
     function deletePerson () {
-        var personID = event.target.getAttribute("id");
+        var personID = event.target.getAttribute("index");
         delete state.people[personID]
         for (var i = 0; i < state.alphNameIDs.length; i++) {
         	if (state.alphNameIDs[i] === Number(personID)) {

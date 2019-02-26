@@ -142,11 +142,6 @@ module.exports = function (state, emit) {
         }
     }
 
-    function cancel() {
-        delete state.people[id]
-        emit("person modal canceled")
-    }
-
     function closePerson() {
         var input = document.getElementById('display-name-input')
         if (!input.value) {

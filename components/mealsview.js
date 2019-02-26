@@ -32,8 +32,33 @@ module.exports = function (state, emit) {
   				<div onclick=${displayMeal} mealID=${id}>
   					${state.meals[id]["name"]}
   				</div>
+                <div class="deletable-list-column" mealID=${id} onclick=${deleteMeal}>
+                   X
+                </div>
   			`
   		}
+
+        function deleteMeal () {
+            var mealID = event.target.getAttribute("mealID")
+            removeDateFromList(mealID)
+            delete state.meals[mealID]
+            emit("row removed")
+        }
+
+        function removeDateFromList (id) {
+            for (var i = 0; i < state.mealsWDatesIDs.length; i++) {
+                if (state.mealsWDatesIDs[i] === Number(id)) {
+                    state.mealsWDatesIDs.splice(i, 1)
+                    return
+                }
+            }
+            for (var i = 0; state.alphaMealIDs.length; i++) {
+                if (state.alphaMealIDs[i] === Number(id)) {
+                    state.alphaMealIDs.splice(i, 1)
+                    return
+                }
+            }
+        }
 
   		function mealRow (id) {
   			return html`
@@ -48,7 +73,7 @@ module.exports = function (state, emit) {
   		}
 
   		function displayMeal () {
-  			var id = event.target.getAttribute("mealID")
+  			var mealID = event.target.getAttribute("mealID")
   			emit('display meal', id)
   		}
 }
