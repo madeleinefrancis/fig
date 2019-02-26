@@ -74,7 +74,7 @@ module.exports = function (state, emit) {
 
   		function displayMeal () {
   			var mealID = event.target.getAttribute("mealID")
-  			emit('display meal', id)
+  			emit('display meal', mealID)
   		}
 }
 
