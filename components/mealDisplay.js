@@ -60,10 +60,28 @@ module.exports = function (state, emit) {
 
         function memberRow (memberRow) {
             return html`
-                <div>
-                    ${memberRow['name']}
+                <div class="deletable-list">
+                    <div class="deletable-list-column">
+                        ${memberRow['name']}
+                    </div>
+                    <div class="deletable-list-column" name=${memberRow["name"]} onclick=${deleteMember}>
+                        X
+                    </div>
                 </div>
             `
+        }
+
+        function deleteMember () {
+
+            var memberName = event.target.getAttribute("name");
+            for (var i = 0; i < state.meals[id]["members"].length; i++) {
+                var curMember = state.meals[id]["members"][i]
+                if (curMember["name"] === memberName) {
+                    state.meals[id]["members"].splice(i, 1)
+                    emit("row added")
+                    break
+                }
+            }
         }
 
         function row (content) {
