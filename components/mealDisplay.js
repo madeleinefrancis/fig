@@ -72,7 +72,6 @@ module.exports = function (state, emit) {
         }
 
         function deleteMember () {
-
             var memberName = event.target.getAttribute("name");
             for (var i = 0; i < state.meals[id]["members"].length; i++) {
                 var curMember = state.meals[id]["members"][i]

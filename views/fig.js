@@ -8,7 +8,8 @@ var mealsButton = require('../components/mealsbutton.js');
 var peopleButton = require('../components/peoplebutton.js');
 var mealsView = require('../components/mealsview.js');
 var peopleView = require('../components/peopleview.js');
-var mealDisplay = require('../components/mealDisplay.js');
+var mealDisplay = require('../components/mealdisplay.js');
+var personDisplay = require('../components/persondisplay.js');
 
 
 var TITLE = 'fig'
@@ -55,6 +56,9 @@ function fig(state, emit) {
 	    	</div>
 	    	<div>
 	    		${state.mealDisplay['display'] ? mealDisplay(state, emit) : console.log('')}
+	    	</div>
+	    	<div>
+	    		${state.personDisplay['display'] ? personDisplay(state, emit) : console.log('')}
 	    	</div>
 	    </div>
     </body>

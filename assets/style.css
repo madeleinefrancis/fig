@@ -42,6 +42,10 @@ button {
     background-color: lightpink;
 }
 
+.modal-wrapper.person-display {
+    background-color: lightblue;
+}
+
 .meal-column {
     display: inline-block;
 }

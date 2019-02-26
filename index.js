@@ -30,6 +30,7 @@ app.use(function (state) {
   state.peopleView = 'invisible'
 
   state.mealDisplay = {}
+  state.personDisplay = {}
 })
 
 app.route('/', require('./views/main'))

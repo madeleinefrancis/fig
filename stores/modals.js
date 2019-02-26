@@ -64,6 +64,12 @@ function store (state, emitter) {
   		emitter.emit(state.events.RENDER)
   	})  	
 
+  	emitter.on('display person', function(data){
+  		state.personDisplay['display'] = true
+  		state.personDisplay['id'] = data
+  		emitter.emit(state.events.RENDER)
+  	})
+
 	emitter.on('DOMContentLoaded', function () {
 	    emitter.on('modal canceled', function () {
 			state.personModal = 'invisible';
@@ -119,6 +125,8 @@ function store (state, emitter) {
 		state.personModal = 'invisible'
 		state.peopleView = 'invisible'
 		state.mealsView = 'invisible'
+		state.mealDisplay['display'] = false
+		state.personDisplay['display'] = false
 		if (state.datePicker) state.datePicker.destroy()
 	})
 
@@ -172,6 +180,11 @@ function store (state, emitter) {
 
 	emitter.on('close meal display', function() {
 		state.mealDisplay['display'] = false
+		emitter.emit(state.events.RENDER)
+	})
+
+	emitter.on('close person display', function() {
+		state.personDisplay['display'] = false
 		emitter.emit(state.events.RENDER)
 	})
 
