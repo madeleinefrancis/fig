@@ -58,6 +58,14 @@ function store (state, emitter) {
 		}
   	})
 
+  	emitter.on('remove id', function(ar, id){
+  		for (var i = 0; i < ar.length; i++) {
+  			if (ar[i] === Number(id)) {
+  				ar.splice(i, 1)
+  			}
+  		}
+  	})
+
   	emitter.on('display meal', function(data){
   		state.mealDisplay['display'] = true
   		state.mealDisplay['id'] = data

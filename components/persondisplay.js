@@ -149,8 +149,9 @@ module.exports = function (state, emit) {
             return
         } else {
             if (input.value !== state.people[id]["name"]) {
+                emit("remove id", state.alphNameIDs, id)
+                emit("sort people array", id, input.value)
                 state.people[id]["name"] = input.value
-                emit("sort people array", id, state.people[id]["name"])
             }
         }
         emit("close person display")
