@@ -10,7 +10,6 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(require('choo-service-worker')())
 }
 
-app.use(require('./stores/clicks'))
 app.use(require('./stores/modals'))
 app.use(function (state) {
   // initialize state
