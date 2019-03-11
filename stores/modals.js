@@ -26,6 +26,7 @@ function store (state, emitter) {
 	  		}
 	  		state.alphNameIDs.push(newID) 
   		}
+  		emitter.emit('save data')
   	})
 
   	emitter.on("sort meals array", function(newID) {
@@ -56,6 +57,7 @@ function store (state, emitter) {
 				state.alphaMealIDs.push(newID)
 			}
 		}
+		emitter.emit('save data')
   	})
 
   	emitter.on('remove id', function(ar, id){
@@ -141,11 +143,13 @@ function store (state, emitter) {
 	emitter.on('DOMContentLoaded', function () {
 		emitter.on('row added', function () {
 			emitter.emit(state.events.RENDER)
+			emitter.emit('save data')
 		})
 	})
 	emitter.on('DOMContentLoaded', function () {
 		emitter.on('row removed', function () {
 			emitter.emit(state.events.RENDER)
+			emitter.emit('save data')
 		})
 	})
 	emitter.on('DOMContentLoaded', function () {
@@ -194,6 +198,19 @@ function store (state, emitter) {
 	emitter.on('close person display', function() {
 		state.personDisplay['display'] = false
 		emitter.emit(state.events.RENDER)
+		emitter.emit('save data')
+	})
+
+	emitter.on('save data', function() {
+		console.log("got here")
+		var saveData = $.ajax({
+			type: 'POST',
+			url: "/enter-state",
+			data: JSON.stringify({ 'state' : state }),
+			contentType: "application/json",
+			success: function(resultData) { alert("Save Complete") }
+		});
+		saveData.error(function(err) { alert( err ); });
 	})
 
 	emitter.on('render', function(data) {

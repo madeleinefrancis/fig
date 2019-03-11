@@ -81,6 +81,7 @@ module.exports = function (state, emit) {
                     break
                 }
             }
+            emit('save data')
         }
 
         function row (content) {

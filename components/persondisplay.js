@@ -156,6 +156,5 @@ module.exports = function (state, emit) {
         }
         emit("close person display")
     }
-
 }
 
