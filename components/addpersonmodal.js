@@ -171,5 +171,3 @@ module.exports = function (state, emit, id) {
 		emit("close person modal")
 	}
 }
-
-
