@@ -202,7 +202,6 @@ function store (state, emitter) {
 	})
 
 	emitter.on('save data', function() {
-		console.log("got here")
 		var saveData = $.ajax({
 			type: 'POST',
 			url: "/enter-state",

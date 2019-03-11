@@ -4,6 +4,8 @@ var path = require('path')
 var request = require('request')
 var bodyParser = require('body-parser');
 var express = require('express')
+var Redis = require('ioredis')
+var redis = new Redis()
 
 var app = express()
 app.use(bodyParser.json());
@@ -26,6 +28,6 @@ app.listen(server)
 app.get('/test', (req, res) => res.send('Hello World!'))
 
 app.post('/enter-state', function (req, res) {
-	console.log(req.body.state)
 	res.send('hihihi')
+	redis.set('state', JSON.stringify(req.body.state))
 })
