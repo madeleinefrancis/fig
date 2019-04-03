@@ -207,9 +207,16 @@ function store (state, emitter) {
 			url: "/enter-state",
 			data: JSON.stringify({ 'state' : state }),
 			contentType: "application/json",
-			success: function(resultData) { alert("Save Complete") }
+			success: function(resultData) { console.log("Save Complete") }
 		});
-		saveData.error(function(err) { alert( err ); });
+		saveData.error(function(err) { console.log( err ); });
+		emitter.emit('get data')
+	})
+
+	emitter.on('get data', function() {
+		$.get('/get-state', function(data, status) {
+			console.log("data", data);
+		})
 	})
 
 	emitter.on('render', function(data) {
