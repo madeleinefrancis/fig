@@ -143,6 +143,7 @@ function store (state, emitter) {
 		state.mealsView = 'invisible'
 		state.mealDisplay['display'] = false
 		state.personDisplay['display'] = false
+		state.editGuestsDisplay['display'] = false
 		if (state.datePicker) state.datePicker.destroy()
 	})
 
@@ -213,7 +214,7 @@ function store (state, emitter) {
 			url: "/enter-state",
 			data: JSON.stringify({ 'state' : state }),
 			contentType: "application/json",
-			success: function(resultData) { console.log("Save Complete") }
+			// success: function(resultData) { console.log("Save Complete") }
 		});
 		saveData.error(function(err) { console.log( err ); });
 	})
