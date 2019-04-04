@@ -210,12 +210,16 @@ function store (state, emitter) {
 			success: function(resultData) { console.log("Save Complete") }
 		});
 		saveData.error(function(err) { console.log( err ); });
-		emitter.emit('get data')
 	})
 
-	emitter.on('get data', function() {
+	emitter.on('DOMContentLoaded', function() {
 		$.get('/get-state', function(data, status) {
-			console.log("data", data);
+			var redisState = JSON.parse(data)
+			state.alphNameIDs = redisState.alphNameIDs
+			state.alphaMealIDs = redisState.alphaMealIDs
+			state.meals = redisState.meals
+			state.mealsWDatesIDs = redisState.mealsWDatesIDs
+			state.people = redisState.people
 		})
 	})
 

@@ -34,6 +34,5 @@ app.post('/enter-state', function (req, res) {
 
 app.get('/get-state', async function(req, res){
 	var state = await redis.get('state')
-	console.log("get state", state)
 	res.send(state)
 })
