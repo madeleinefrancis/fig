@@ -80,6 +80,12 @@ function store (state, emitter) {
   		emitter.emit(state.events.RENDER)
   	})
 
+  	emitter.on('edit guests', function(data){
+  		state.editGuestsDisplay['display'] = true
+  		state.editGuestsDisplay['id'] = data
+  		emitter.emit(state.events.RENDER)
+  	})  	
+
 	emitter.on('DOMContentLoaded', function () {
 	    emitter.on('modal canceled', function () {
 			state.personModal = 'invisible';
@@ -215,11 +221,13 @@ function store (state, emitter) {
 	emitter.on('DOMContentLoaded', function() {
 		$.get('/get-state', function(data, status) {
 			var redisState = JSON.parse(data)
-			state.alphNameIDs = redisState.alphNameIDs
-			state.alphaMealIDs = redisState.alphaMealIDs
-			state.meals = redisState.meals
-			state.mealsWDatesIDs = redisState.mealsWDatesIDs
-			state.people = redisState.people
+			if (redisState.alphNameIDs) {
+				state.alphNameIDs = redisState.alphNameIDs
+				state.alphaMealIDs = redisState.alphaMealIDs
+				state.meals = redisState.meals
+				state.mealsWDatesIDs = redisState.mealsWDatesIDs
+				state.people = redisState.people
+			}
 		})
 	})
 

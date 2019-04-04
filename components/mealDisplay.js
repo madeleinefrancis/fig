@@ -21,6 +21,9 @@ module.exports = function (state, emit) {
                 <div class="display-meal-column">
                     <div class="meal-column-title">
                         Guests
+                        <div id="add-guest" onclick=${editMembers}>
+                            +
+                        </div>
                     </div>
                     <div class="meal-column-items">
                         ${state.meals[id]['members'] ? state.meals[id]['members'].map(memberRow) : console.log("")}
@@ -82,6 +85,10 @@ module.exports = function (state, emit) {
                 }
             }
             emit('save data')
+        }
+
+        function editMembers () {
+            emit('edit guests', id)
         }
 
         function row (content) {

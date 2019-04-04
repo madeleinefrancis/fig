@@ -25,6 +25,7 @@ app.use(function (state) {
 
   state.mealDisplay = {}
   state.personDisplay = {}
+  state.editGuestsDisplay = {}
 })
 
 app.route('/', require('./views/main'))
