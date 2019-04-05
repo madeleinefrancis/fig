@@ -28,7 +28,7 @@ module.exports = function (state, emit, id) {
 			    		</button>
 		    		</div>
 		    		<div class="pref-list">
-		    			${state.people[id] ? state.people[id]["likes"].slice(0).reverse().map( x => listRow(x, "likes")) : console.log("")}
+		    			${state.people[id] ? state.people[id]["likes"].slice(0).reverse().map( x => listRow(x, "likes")) : null}
 		    		</div>
 	    		</div>
 		    	<div class="pref-column">
@@ -41,7 +41,7 @@ module.exports = function (state, emit, id) {
 			    		</button>
 		    		</div>
 		    		<div class="pref-list">
-		    			${state.people[id] ? state.people[id]["dislikes"].slice(0).reverse().map( x => listRow(x, "dislikes")) : console.log("")}
+		    			${state.people[id] ? state.people[id]["dislikes"].slice(0).reverse().map( x => listRow(x, "dislikes")) : null}
 		    		</div>
 	    		</div>
 		    	<div class="pref-column">
@@ -54,7 +54,7 @@ module.exports = function (state, emit, id) {
 			    		</button>
 		    		</div>
 		    		<div class="pref-list">
-		    			${state.people[id] ? state.people[id]["restrictions"].slice(0).reverse().map( x => listRow(x, "restrictions")) : console.log("")}
+		    			${state.people[id] ? state.people[id]["restrictions"].slice(0).reverse().map( x => listRow(x, "restrictions")) : null}
 		    		</div>
 	    		</div>
 	    	</div>

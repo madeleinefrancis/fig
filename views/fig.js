@@ -1,4 +1,3 @@
-
 var html = require('choo/html')
 var addPerson = require('../components/addpersonbutton.js');
 var addMeal = require('../components/addmealbutton.js');
@@ -11,7 +10,6 @@ var peopleView = require('../components/peopleview.js');
 var mealDisplay = require('../components/mealdisplay.js');
 var personDisplay = require('../components/persondisplay.js');
 var editGuestsDisplay = require('../components/editguestsdisplay.js');
-
 
 var TITLE = 'fig'
 
@@ -91,7 +89,7 @@ function fig(state, emit) {
 			emit('close all views')
 			emit("open meals view")
 		} else {
-			emit("close meals view")
+			emit("close all views")
 		}
 	}
 

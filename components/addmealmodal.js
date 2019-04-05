@@ -16,7 +16,7 @@ module.exports = function (state, emit, id) {
 				</div>
 	    		${showNameInput()}
 		    	<div id="date-container">
-	    			<input type="text" class="datepicker" id="datepicker">
+	    			<input type="text" class="datepicker" id="datepicker" autocomplete="off">
 		    	</div>
 	    	</div>	
 	    	<div id="member-columns">

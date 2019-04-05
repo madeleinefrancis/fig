@@ -26,7 +26,7 @@ module.exports = function (state, emit) {
                         </div>
                     </div>
                     <div class="meal-column-items">
-                        ${state.meals[id]['members'] ? state.meals[id]['members'].map(memberRow) : console.log("")}
+                        ${state.meals[id]['members'] ? state.meals[id]['members'].map(memberRow) : null}
                     </div>
                 </div>
                 <div class="display-meal-column">

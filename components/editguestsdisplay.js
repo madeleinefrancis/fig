@@ -51,7 +51,7 @@ module.exports = function (state, emit) {
     }
 
     function deletePerson () {
-        var personID = event.target.getAttribute("index");
+        var personID = event.target.getAttribute("index")
         for (var i = 0; i < state.meals[id]["members"].length; i++) {
         	if (state.meals[id]["members"][i]["name"] === state.people[personID]["name"]) {
         		state.meals[id]["members"].splice(i, 1)
