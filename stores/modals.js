@@ -118,6 +118,8 @@ function store (state, emitter) {
 	emitter.on('DOMContentLoaded', function() {
 		emitter.on('close meals view', function() {
 			state.mealsView = 'invisible'
+			state.editGuestsDisplay['display'] = false
+			state.mealDisplay['display'] = false
 			emitter.emit(state.events.RENDER)
 		})
 	})

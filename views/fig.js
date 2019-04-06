@@ -89,7 +89,7 @@ function fig(state, emit) {
 			emit('close all views')
 			emit("open meals view")
 		} else {
-			emit("close all views")
+			emit('close meals view')
 		}
 	}
 
