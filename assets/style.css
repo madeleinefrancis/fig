@@ -17,6 +17,12 @@ button {
     background-color: rgba(0, 0, 0, 0);
 }
 
+#menu-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
 .deletable-list {
     display: flex;
     flex-wrap: nowrap;
@@ -69,11 +75,14 @@ button {
     border-width: 1px;
     border-color: black;
     border-style: solid;
-    position: absolute;
     display: inline-block;
-    width: 120px;
+    width: 20vw;
+    height: 8vh;
     text-align: center;
     padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #add-person-button {
@@ -82,17 +91,14 @@ button {
 
 #add-meal-button {
 	background-color: lightpink;
-	top: 10vh;
 }
 
 #people-button {
     background-color: lightblue;
-    top: 30vh;
 }
 
 #meals-button {
     background-color: beige;
-    top: 20vh;
 }
 
 #complete-buttons {

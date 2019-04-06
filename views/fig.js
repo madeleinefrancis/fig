@@ -29,17 +29,19 @@ function fig(state, emit) {
 			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   			<script src="assets/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-	    	<div onclick=${addPersonModal}>
-	    		${addPerson()}
-	    	</div>
-	    	<div onclick=${addMealModal}>
-	    		${addMeal()}
-	    	</div>
-	    	<div onclick=${showMeals}>
-	    		${mealsButton()}
-	    	</div>
-	    	<div onclick=${showPeople}>
-	    		${peopleButton()}
+	    	<div id="menu-bar">
+		    	<div onclick=${addPersonModal}>
+		    		${addPerson()}
+		    	</div>
+		    	<div onclick=${addMealModal}>
+		    		${addMeal()}
+		    	</div>
+		    	<div onclick=${showMeals}>
+		    		${mealsButton()}
+		    	</div>
+		    	<div onclick=${showPeople}>
+		    		${peopleButton()}
+		    	</div>
 	    	</div>
 	    	<div>
 	    		${personModal(state, emit, Object.keys(state.people).length - 1)}
