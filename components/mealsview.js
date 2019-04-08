@@ -7,15 +7,23 @@ module.exports = function (state, emit) {
   	return html`
   		<div class="modal-wrapper ${state.mealsView}">
   			<ul>
-          <li onclick=${switchTab} id="tb_1" index="1" class="tabmenu active">Tab 1</li>
-          <li onclick=${switchTab} id="tb_2" index="2" class="tabmenu">Tab 2</li>
+          <li onclick=${switchTab} id="tb_1" index="1" class="tabmenu active">Upcoming Meals</li>
+          <li onclick=${switchTab} id="tb_2" index="2" class="tabmenu">Past Meals</li>
         </ul>
          
         <div id="content_1" index="1" class="tabcontent"> 
-          Content of the first tab.
+          <div class="column">
+              <div id="dated-meals" class="meal-column">
+                ${state.mealsWDatesIDs.map(datedMealRow)}
+              </div>
+            </div>
         </div> 
         <div id="content_2" index="2" class="tabcontent" style="display:none;">
-          Content of the second tab.
+           <div class="column">
+              <div id="non-dated-meals" class="meal-column">
+                ${state.alphaMealIDs.map(datedMealRow)}
+              </div>
+            </div>
         </div>
   		</div>
   		`
@@ -92,22 +100,3 @@ module.exports = function (state, emit) {
   			emit('display meal', mealID)
   		}
 }
-
-// <div class="modal-content-wrapper">
-//           MEALS
-//         </div>
-//         <div id="meal-columns-wrapper">
-//           <div id="member-columns">
-//             <div class="column">
-//               <div id="dated-meals" class="meal-column">
-//                 ${state.mealsWDatesIDs.map(datedMealRow)}
-//               </div>
-//             </div>
-//             <div class="column">
-//               <div id="non-dated-meals" class="meal-column">
-//                 ${state.alphaMealIDs.map(datedMealRow)}
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
