@@ -17,6 +17,10 @@ button {
     background-color: rgba(0, 0, 0, 0);
 }
 
+ul {
+    list-style-type: none;
+}
+
 #menu-bar {
     display: flex;
     flex-wrap: nowrap;
