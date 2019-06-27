@@ -7,14 +7,14 @@ module.exports = function (state, emit) {
   	return html`
         <div class="modal-wrapper ${state.mealsView}">  
             <ul>
-                <li id="tb_1" class="tabmenu active" content="content_1" onclick=${rudrSwitchTab}>Tab 1</li>
-                <li id="tb_2" class="tabmenu" content="content_2" onclick=${rudrSwitchTab}>Tab 2</li>
+                <li id="tb_1" class="tabmenu active" content="meal_content_1" onclick=${rudrSwitchTab}>Upcoming</li>
+                <li id="tb_2" class="tabmenu" content="meal_content_2" onclick=${rudrSwitchTab}>Past</li>
             </ul>
              
-            <div id="content_1" class="tabcontent"> 
+            <div id="meal_content_1" class="tabcontent"> 
                 Content of the first tab.
             </div> 
-            <div id="content_2" class="tabcontent" style="display:none;">
+            <div id="meal_content_2" class="tabcontent" style="display:none;">
                 Content of the second tab.
             </div>
         </div>
@@ -80,6 +80,7 @@ module.exports = function (state, emit) {
         for (i = 0; i < x.length; i++) {
             x[i].style.display = 'none'; // hide all tab content
         }
+        // debugger
         document.getElementById(content).style.display = 'block'; // display the content of the tab we need
      
         // now we get all tab menu items by class names (use the next code only if you need to highlight current tab)

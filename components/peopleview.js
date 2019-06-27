@@ -6,9 +6,6 @@ module.exports = function (state, emit) {
   // create html template
   	return html`
   		<div class="modal-wrapper ${state.peopleView}">
-  			<div class="modal-content-wrapper">
-  				PEOPLE
-  			</div>
   			<div id="meal-columns-wrapper">
 	  			<div id="member-columns">
 	  				${state.alphNameIDs.map(listRow)}

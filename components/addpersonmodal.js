@@ -9,54 +9,25 @@ module.exports = function (state, emit, id) {
 	    		${state.people[id] ? (state.people[id]["name"] ? showNameInput(true) : showNameInput(false)) : showNameInput(false)}
 	    		</button>
 	    		<div id="complete-buttons">
-		    		<button id="cancel-add-person" onclick=${cancel}>
-		    			cancel
-		    		</button>
 					<button id="complete-add-person" onclick=${complete}>
 						done
 					</button>
 				</div>
 	    	</div>
+
+            <ul>
+                <li id="tb_1" class="tabmenu active" content="content_1" onclick=${rudrSwitchTab}>Likes</li>
+                <li id="tb_2" class="tabmenu" content="content_2" onclick=${rudrSwitchTab}>Disklikes</li>
+                <li id="tb_3" class="tabmenu" content="content_3" onclick=${rudrSwitchTab}>Restriction</li>
+            </ul>
+
 	    	<div class="food-prefs">
-		    	<div class="pref-column">
-		    		<div class="">
-			    		<input id="likes-input" placeholder="likes">
-			    		<button class="input-button" onclick=${addLike}> 
-			    			<i class="material-icons">
-								done
-							</i>
-			    		</button>
-		    		</div>
-		    		<div class="pref-list">
-		    			${state.people[id] ? state.people[id]["likes"].slice(0).reverse().map( x => listRow(x, "likes")) : null}
-		    		</div>
-	    		</div>
-		    	<div class="pref-column">
-		    		<div class="">
-			    		<input id="dislikes-input" placeholder="dislikes">
-			    		<button class="input-button" onclick=${addDislike}> 
-			    			<i class="material-icons">
-								done
-							</i>
-			    		</button>
-		    		</div>
-		    		<div class="pref-list">
-		    			${state.people[id] ? state.people[id]["dislikes"].slice(0).reverse().map( x => listRow(x, "dislikes")) : null}
-		    		</div>
-	    		</div>
-		    	<div class="pref-column">
-		    		<div class="">
-						<input id="restrictions-input" placeholder="restrictions">
-			    		<button class="input-button" onclick=${addRestriction}> 	
-			    			<i class="material-icons">
-								done
-							</i>	    			
-			    		</button>
-		    		</div>
-		    		<div class="pref-list">
-		    			${state.people[id] ? state.people[id]["restrictions"].slice(0).reverse().map( x => listRow(x, "restrictions")) : null}
-		    		</div>
-	    		</div>
+	            <div id="content_1" class="tabcontent"> 
+	            </div> 
+	            <div id="content_2" class="tabcontent" style="display:none;">
+	            </div>
+	            <div id="content_3" class="tabcontent" style="display:none;">
+	            </div>
 	    	</div>
 	    </div>
 	  </div>
@@ -154,6 +125,7 @@ module.exports = function (state, emit, id) {
 		}
 	}
 
+	// use later for cancel button 
 	function cancel() {
 		delete state.people[id]
 		emit("person modal canceled")
@@ -170,4 +142,24 @@ module.exports = function (state, emit, id) {
 		emit("sort people array", id, state.people[id]["name"])
 		emit("close person modal")
 	}
+
+	function rudrSwitchTab(event) {
+        // first of all we get all tab content blocks (I think the best way to get them by class names)
+        var tab = event.target.getAttribute("id")
+        var content = event.target.getAttribute("content")
+        var x = document.getElementsByClassName("tabcontent");
+        var i;
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = 'none'; // hide all tab content
+        }
+        document.getElementById(content).style.display = 'block'; // display the content of the tab we need
+     
+        // now we get all tab menu items by class names (use the next code only if you need to highlight current tab)
+        var x = document.getElementsByClassName("tabmenu");
+        var i;
+        for (i = 0; i < x.length; i++) {
+            x[i].className = 'tabmenu'; 
+        }
+        document.getElementById(tab).className = 'tabmenu active';
+    }
 }
