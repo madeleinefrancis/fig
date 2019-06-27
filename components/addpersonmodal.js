@@ -23,10 +23,49 @@ module.exports = function (state, emit, id) {
 
 	    	<div class="food-prefs">
 	            <div id="content_1" class="tabcontent"> 
+		            <div class="pref-column">
+			    		<div class="">
+				    		<input id="likes-input" placeholder="likes">
+				    		<button class="input-button" onclick=${addLike}> 
+				    			<i class="material-icons">
+									done
+								</i>
+				    		</button>
+			    		</div>
+			    		<div class="pref-list">
+			    			${state.people[id] ? state.people[id]["likes"].slice(0).reverse().map( x => listRow(x, "likes")) : null}
+			    		</div>
+		    		</div>
 	            </div> 
 	            <div id="content_2" class="tabcontent" style="display:none;">
+    		    	<div class="pref-column">
+			    		<div class="">
+				    		<input id="dislikes-input" placeholder="dislikes">
+				    		<button class="input-button" onclick=${addDislike}> 
+				    			<i class="material-icons">
+									done
+								</i>
+				    		</button>
+			    		</div>
+			    		<div class="pref-list">
+			    			${state.people[id] ? state.people[id]["dislikes"].slice(0).reverse().map( x => listRow(x, "dislikes")) : null}
+			    		</div>
+		    		</div>
 	            </div>
 	            <div id="content_3" class="tabcontent" style="display:none;">
+    		    	<div class="pref-column">
+			    		<div class="">
+							<input id="restrictions-input" placeholder="restrictions">
+				    		<button class="input-button" onclick=${addRestriction}> 	
+				    			<i class="material-icons">
+									done
+								</i>	    			
+				    		</button>
+			    		</div>
+			    		<div class="pref-list">
+			    			${state.people[id] ? state.people[id]["restrictions"].slice(0).reverse().map( x => listRow(x, "restrictions")) : null}
+			    		</div>
+		    		</div>
 	            </div>
 	    	</div>
 	    </div>
