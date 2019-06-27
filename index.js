@@ -17,6 +17,8 @@ app.use(function (state) {
   state.meals = {}
   state.mealsWDatesIDs = []
   state.alphaMealIDs = []
+  state.upcomingMeals = []
+  state.pastMeals = []
 
   state.personModal = 'invisible'
   state.mealModal = 'invisible'

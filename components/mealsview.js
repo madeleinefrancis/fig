@@ -5,98 +5,69 @@ var html = require('choo/html')
 module.exports = function (state, emit) {
   // create html template
   	return html`
-  		<div class="modal-wrapper ${state.mealsView}">
-  			<ul>
-          <li onclick=${switchTab} id="tb_1" index="1" class="tabmenu active">Upcoming Meals</li>
-          <li onclick=${switchTab} id="tb_2" index="2" class="tabmenu">Past Meals</li>
-        </ul>
-         
-        <div id="content_1" index="1" class="tabcontent"> 
-          <div class="column">
-              <div id="dated-meals" class="meal-column">
-                ${state.mealsWDatesIDs.map(datedMealRow)}
-              </div>
+        <div class="modal-wrapper ${state.mealsView}">  
+            <input class="tab-input" id="tab-one" type="radio" name="grp" checked="checked"/>
+            <label for="tab-one">Tab One</label>
+            <div class="tab-input">
+                A
             </div>
-        </div> 
-        <div id="content_2" index="2" class="tabcontent" style="display:none;">
-           <div class="column">
-              <div id="non-dated-meals" class="meal-column">
-                ${state.alphaMealIDs.map(datedMealRow)}
-              </div>
-            </div>
+            
+            <input class="tab-input" id="tab-two" type="radio" name="grp" />
+            <label for="tab-two">Tab Two</label>
+            <div class="tab-input">
+                B
+            </div>  
         </div>
-  		</div>
   		`
 
-      function switchTab(event) {
-        // first of all we get all tab content blocks (I think the best way to get them by class names)
-        var tabID = event.target.getAttribute("id")
-        var tabIndex = event.target.getAttribute("index")
-        var x = document.getElementsByClassName("tabcontent");
-        var i;
-        for (i = 0; i < x.length; i++) {
-          x[i].style.display = 'none'; // hide all tab content
-        }
-        var contentID = "content_" + tabIndex
-        document.getElementById(contentID).style.display = 'block'; // display the content of the tab we need
-       
-        // now we get all tab menu items by class names (use the next code only if you need to highlight current tab)
-        var x = document.getElementsByClassName("tabmenu");
-        var i;
-        for (i = 0; i < x.length; i++) {
-          x[i].className = 'tabmenu'; 
-        }
-        document.getElementById(tabID).className = 'tabmenu active';
-      }
+	function datedMealRow (id) {
+		var formatedDate = formatDate(id)
+		return html`
+			<div onclick=${displayMeal} mealID=${id}>
+				${state.meals[id]["name"]}
+			</div>
+        <div class="deletable-list-column" mealID=${id} onclick=${deleteMeal}>
+           X
+        </div>
+		`
+	}
 
-  		function datedMealRow (id) {
-  			var formatedDate = formatDate(id)
-  			return html`
-  				<div onclick=${displayMeal} mealID=${id}>
-  					${state.meals[id]["name"]}
-  				</div>
-                <div class="deletable-list-column" mealID=${id} onclick=${deleteMeal}>
-                   X
-                </div>
-  			`
-  		}
+    function deleteMeal () {
+        var mealID = event.target.getAttribute("mealID")
+        removeDateFromList(mealID)
+        delete state.meals[mealID]
+        emit("row removed")
+    }
 
-        function deleteMeal () {
-            var mealID = event.target.getAttribute("mealID")
-            removeDateFromList(mealID)
-            delete state.meals[mealID]
-            emit("row removed")
-        }
-
-        function removeDateFromList (id) {
-            for (var i = 0; i < state.mealsWDatesIDs.length; i++) {
-                if (state.mealsWDatesIDs[i] === Number(id)) {
-                    state.mealsWDatesIDs.splice(i, 1)
-                    return
-                }
-            }
-            for (var i = 0; state.alphaMealIDs.length; i++) {
-                if (state.alphaMealIDs[i] === Number(id)) {
-                    state.alphaMealIDs.splice(i, 1)
-                    return
-                }
+    function removeDateFromList (id) {
+        for (var i = 0; i < state.mealsWDatesIDs.length; i++) {
+            if (state.mealsWDatesIDs[i] === Number(id)) {
+                state.mealsWDatesIDs.splice(i, 1)
+                return
             }
         }
+        for (var i = 0; state.alphaMealIDs.length; i++) {
+            if (state.alphaMealIDs[i] === Number(id)) {
+                state.alphaMealIDs.splice(i, 1)
+                return
+            }
+        }
+    }
 
-  		function mealRow (id) {
-  			return html`
-  				<div>
-  					${state.meals[id]["name"]}
-  				</div>
-  			`
-  		}
+	function mealRow (id) {
+		return html`
+			<div>
+				${state.meals[id]["name"]}
+			</div>
+		`
+	}
 
-  		function formatDate (id) {
-  			var date = state.meals[id]["date"]
-  		}
+	function formatDate (id) {
+		var date = state.meals[id]["date"]
+	}
 
-  		function displayMeal () {
-  			var mealID = event.target.getAttribute("mealID")
-  			emit('display meal', mealID)
-  		}
+	function displayMeal () {
+		var mealID = event.target.getAttribute("mealID")
+		emit('display meal', mealID)
+	}
 }

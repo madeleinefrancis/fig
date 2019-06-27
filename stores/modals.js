@@ -31,17 +31,24 @@ function store (state, emitter) {
 
   	emitter.on("sort meals array", function(newID) {
 		if (state.meals[newID]["date"]) {
-			if (state.mealsWDatesIDs.length === 0 ) {
-				state.mealsWDatesIDs.push(newID)
-			} else {
-				var newDate = state.meals[newID]["date"]
-				for (var i = 0; i < state.mealsWDatesIDs.length; i++) {
-					if (newDate < state.meals[state.mealsWDatesIDs[i]]["date"]) {
-						state.mealsWDatesIDs.splice(i, 0, newID)
+			var today = new Date()
+			var newDate = state.meals[newID]["date"]
+			if (newDate.date === today.date || newDate > today) {
+				for (var i = 0; i < state.upcomingMeals.length; i++) {
+					if (newDate < state.meals[state.upcomingMeals[i]]["date"]) {
+						state.upcomingMeals.splice(i, 0, newID)
 						return
 					}
 				}
-				state.alphaMealIDs.push(newID)
+				state.upcomingMeals.push(newID)
+			} else {
+				for (var i = 0; i < state.pastMeals.length; i++) {
+					if (newDate < state.meals[state.pastMeals[i]]["date"]) {
+						state.pastMeals.splice(i, 0, newID)
+						return
+					}
+				}
+				state.pastMeals.push(newID)
 			}
 		} else {
 			if (state.alphaMealIDs.length === 0 ) {
@@ -223,8 +230,8 @@ function store (state, emitter) {
 
 	emitter.on('DOMContentLoaded', function() {
 		$.get('/get-state', function(data, status) {
-			var redisState = JSON.parse(data)
-			if (redisState.alphNameIDs) {
+			if (data === null || data.match(/^ *$/) !== null) {
+				var redisState = JSON.parse(data)
 				state.alphNameIDs = redisState.alphNameIDs
 				state.alphaMealIDs = redisState.alphaMealIDs
 				state.meals = redisState.meals

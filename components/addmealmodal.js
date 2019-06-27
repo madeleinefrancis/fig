@@ -6,6 +6,10 @@ module.exports = function (state, emit, id) {
 	  <div class="modal-wrapper ${state.mealModal}">
 	    <div class="modal-content-wrapper" id="meal-modal-content-wrapper">
 	    	<div class="modal-name-input"> 
+	    		${showNameInput()}
+		    	<div id="date-container">
+	    			<input type="text" class="datepicker" id="datepicker" autocomplete="off" placeholder="date">
+		    	</div>
 	    		<div id="complete-buttons">
 		    		<button id="cancel-add-person" onclick=${cancel}>
 		    			cancel
@@ -14,10 +18,6 @@ module.exports = function (state, emit, id) {
 						done
 					</button>
 				</div>
-	    		${showNameInput()}
-		    	<div id="date-container">
-	    			<input type="text" class="datepicker" id="datepicker" autocomplete="off">
-		    	</div>
 	    	</div>	
 	    	<div id="member-columns">
 	    		<div class="column" id="meal-members-column">
