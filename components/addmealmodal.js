@@ -11,9 +11,6 @@ module.exports = function (state, emit, id) {
 	    			<input type="text" class="datepicker" id="datepicker" autocomplete="off" placeholder="date">
 		    	</div>
 	    		<div id="complete-buttons">
-		    		<button id="cancel-add-person" onclick=${cancel}>
-		    			cancel
-		    		</button>
 					<button id="complete-add-person" onclick=${complete}>
 						done
 					</button>

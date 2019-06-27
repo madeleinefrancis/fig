@@ -135,8 +135,9 @@ ul {
 
 .modal-content-wrapper {
     position: absolute;
-    left: 10vw;
     padding-top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .modal-name-input {
@@ -145,10 +146,11 @@ ul {
 
 #meal-name-entry {
     display: inline-block;
+    padding-bottom: 1vh;
 }
 
 #meal-modal-content-wrapper {
-    left: 0vw;
+    /*left: 0vw;*/
 }
 
 #member-columns {
@@ -185,6 +187,13 @@ ul {
 
 #date-container {
     display: inline-block;
+    padding-bottom: 2vh;
+}
+
+#complete-add-person { 
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
 }
 
 .food-prefs {
@@ -225,10 +234,10 @@ label:first-of-type {
 
 div {
   /*width: 100%;*/
-  margin-top: -1px;
-  /*padding: 1em;*/
+/*  margin-top: -1px;
+  padding: 1em;
   -webkit-order: 1;
-  order: 1;
+  order: 1;*/
 }
 
 input.tab-input[type=radio], div.tab-input {
