@@ -34,7 +34,7 @@ module.exports = function (state, emit, id) {
 					    		<input id="likes-input">
 					    		<button class="input-button" onclick=${addLike}> 
 					    			<i class="material-icons">
-										done
+										arrow_right_alt
 									</i>
 					    		</button>
 				    		</div>
@@ -49,7 +49,7 @@ module.exports = function (state, emit, id) {
 					    		<input id="dislikes-input">
 					    		<button class="input-button" onclick=${addDislike}> 
 					    			<i class="material-icons">
-										done
+										arrow_right_alt
 									</i>
 					    		</button>
 				    		</div>
@@ -64,7 +64,7 @@ module.exports = function (state, emit, id) {
 								<input id="restrictions-input">
 					    		<button class="input-button" onclick=${addRestriction}> 	
 					    			<i class="material-icons">
-										done
+										arrow_right_alt
 									</i>	    			
 					    		</button>
 				    		</div>

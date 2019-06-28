@@ -127,6 +127,10 @@ ul {
     left: 4.5vw;
 }
 
+.input-button {
+  border-bottom: 2px solid;
+}
+
 .invisible {
     display: none;
 }
