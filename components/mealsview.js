@@ -6,16 +6,18 @@ module.exports = function (state, emit) {
   // create html template
   	return html`
         <div class="modal-wrapper ${state.mealsView}">  
-            <ul>
-                <li id="tb_1" class="tabmenu active" content="meal_content_1" onclick=${rudrSwitchTab}>Upcoming</li>
-                <li id="tb_2" class="tabmenu" content="meal_content_2" onclick=${rudrSwitchTab}>Past</li>
-            </ul>
-             
-            <div id="meal_content_1" class="tabcontent"> 
-                Content of the first tab.
-            </div> 
-            <div id="meal_content_2" class="tabcontent" style="display:none;">
-                Content of the second tab.
+            <div class=flex-stack">
+                <div class="tab-menu">
+                    <div id="tb_1" class="tabmenu active" content="meal_content_1" onclick=${rudrSwitchTab}>Upcoming</div>
+                    <div id="tb_2" class="tabmenu" content="meal_content_2" onclick=${rudrSwitchTab}>Past</div>
+                </div>
+                 
+                <div id="meal_content_1" class="tabcontent"> 
+                    Content of the first tab.
+                </div> 
+                <div id="meal_content_2" class="tabcontent" style="display:none;">
+                    Content of the second tab.
+                </div>
             </div>
         </div>
   		`

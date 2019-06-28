@@ -4,17 +4,26 @@ var html = require('choo/html')
 module.exports = function (state, emit, id) {
   	return html`
 	  <div class="modal-wrapper ${state.mealModal}">
-	    <div class="modal-content-wrapper" id="meal-modal-content-wrapper">
+	    <div class="modal-content-wrapper flex-stack" id="meal-modal-content-wrapper">	    	
+    		<div id="close-buttons">
+				<button id="cancel-add-person" onclick=${cancel}>
+					<i class="material-icons">
+						close
+					</i>
+				</button>
+			</div>    		
+    		<div id="complete-buttons">
+				<button id="complete-add-person" onclick=${complete}>
+					<i class="material-icons">
+						done
+					</i>
+				</button>
+			</div>
 	    	<div class="modal-name-input"> 
 	    		${showNameInput()}
 		    	<div id="date-container">
 	    			<input type="text" class="datepicker" id="datepicker" autocomplete="off" placeholder="date">
 		    	</div>
-	    		<div id="complete-buttons">
-					<button id="complete-add-person" onclick=${complete}>
-						done
-					</button>
-				</div>
 	    	</div>	
 	    	<div id="member-columns">
 	    		<div class="column" id="meal-members-column">
