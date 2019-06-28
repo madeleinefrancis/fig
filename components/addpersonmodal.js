@@ -5,14 +5,23 @@ module.exports = function (state, emit, id) {
   	return html`
 	  <div class="modal-wrapper ${state.personModal}">
 	    <div class="modal-content-wrapper flex-stack">
+    		<div id="close-buttons">
+				<button id="cancel-add-person" onclick=${cancel}>
+					<i class="material-icons">
+						close
+					</i>
+				</button>
+			</div>    		
+    		<div id="complete-buttons">
+				<button id="complete-add-person" onclick=${complete}>
+					<i class="material-icons">
+						done
+					</i>
+				</button>
+			</div>
 	    	<div class="modal-name-input"> 
 	    		${state.people[id] ? (state.people[id]["name"] ? showNameInput(true) : showNameInput(false)) : showNameInput(false)}
 	    		</button>
-	    		<div id="complete-buttons">
-					<button id="complete-add-person" onclick=${complete}>
-						done
-					</button>
-				</div>
 				<div class="tab-menu">
 	                <div id="tb_1" class="tabmenu active" content="content_1" onclick=${rudrSwitchTab}>likes</div>
 	                <div id="tb_2" class="tabmenu" content="content_2" onclick=${rudrSwitchTab}>disklikes</div>
@@ -22,7 +31,7 @@ module.exports = function (state, emit, id) {
 		            <div id="content_1" class="tabcontent"> 
 			            <div class="pref-column">
 				    		<div class="">
-					    		<input id="likes-input" placeholder="likes">
+					    		<input id="likes-input">
 					    		<button class="input-button" onclick=${addLike}> 
 					    			<i class="material-icons">
 										done
@@ -37,7 +46,7 @@ module.exports = function (state, emit, id) {
 		            <div id="content_2" class="tabcontent" style="display:none;">
 	    		    	<div class="pref-column">
 				    		<div class="">
-					    		<input id="dislikes-input" placeholder="dislikes">
+					    		<input id="dislikes-input">
 					    		<button class="input-button" onclick=${addDislike}> 
 					    			<i class="material-icons">
 										done
@@ -52,7 +61,7 @@ module.exports = function (state, emit, id) {
 		            <div id="content_3" class="tabcontent" style="display:none;">
 	    		    	<div class="pref-column">
 				    		<div class="">
-								<input id="restrictions-input" placeholder="restrictions">
+								<input id="restrictions-input">
 					    		<button class="input-button" onclick=${addRestriction}> 	
 					    			<i class="material-icons">
 										done

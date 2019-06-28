@@ -111,8 +111,20 @@ ul {
     background-color: beige;
 }
 
+#close-buttons {
+
+}
+
 #complete-buttons {
-    /*display: inline-block;*/
+    position: absolute;
+    top: 2.5vw;
+    right: 7vw;
+}
+
+#close-buttons {
+    position: absolute;
+    top: 2.7vw;
+    left: 4.5vw;
 }
 
 .invisible {
@@ -135,6 +147,7 @@ ul {
 
 .modal-content-wrapper {
     position: absolute;
+    width: 100%;
     padding-top: 5vh;
     left: 50%;
     transform: translateX(-50%);
