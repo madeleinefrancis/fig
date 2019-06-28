@@ -4,7 +4,7 @@ var html = require('choo/html')
 module.exports = function (state, emit, id) {
   	return html`
 	  <div class="modal-wrapper ${state.personModal}">
-	    <div class="modal-content-wrapper">
+	    <div class="modal-content-wrapper flex-stack">
 	    	<div class="modal-name-input"> 
 	    		${state.people[id] ? (state.people[id]["name"] ? showNameInput(true) : showNameInput(false)) : showNameInput(false)}
 	    		</button>
@@ -13,63 +13,60 @@ module.exports = function (state, emit, id) {
 						done
 					</button>
 				</div>
-	    	</div>
-
-            <ul>
-                <li id="tb_1" class="tabmenu active" content="content_1" onclick=${rudrSwitchTab}>Likes</li>
-                <li id="tb_2" class="tabmenu" content="content_2" onclick=${rudrSwitchTab}>Disklikes</li>
-                <li id="tb_3" class="tabmenu" content="content_3" onclick=${rudrSwitchTab}>Restriction</li>
-            </ul>
-
-	    	<div class="food-prefs">
-	            <div id="content_1" class="tabcontent"> 
-		            <div class="pref-column">
-			    		<div class="">
-				    		<input id="likes-input" placeholder="likes">
-				    		<button class="input-button" onclick=${addLike}> 
-				    			<i class="material-icons">
-									done
-								</i>
-				    		</button>
-			    		</div>
-			    		<div class="pref-list">
-			    			${state.people[id] ? state.people[id]["likes"].slice(0).reverse().map( x => listRow(x, "likes")) : null}
-			    		</div>
-		    		</div>
-	            </div> 
-	            <div id="content_2" class="tabcontent" style="display:none;">
-    		    	<div class="pref-column">
-			    		<div class="">
-				    		<input id="dislikes-input" placeholder="dislikes">
-				    		<button class="input-button" onclick=${addDislike}> 
-				    			<i class="material-icons">
-									done
-								</i>
-				    		</button>
-			    		</div>
-			    		<div class="pref-list">
-			    			${state.people[id] ? state.people[id]["dislikes"].slice(0).reverse().map( x => listRow(x, "dislikes")) : null}
-			    		</div>
-		    		</div>
+				<div class="tab-menu">
+	                <div id="tb_1" class="tabmenu active" content="content_1" onclick=${rudrSwitchTab}>likes</div>
+	                <div id="tb_2" class="tabmenu" content="content_2" onclick=${rudrSwitchTab}>disklikes</div>
+	                <div id="tb_3" class="tabmenu" content="content_3" onclick=${rudrSwitchTab}>restrictions</div>
 	            </div>
-	            <div id="content_3" class="tabcontent" style="display:none;">
-    		    	<div class="pref-column">
-			    		<div class="">
-							<input id="restrictions-input" placeholder="restrictions">
-				    		<button class="input-button" onclick=${addRestriction}> 	
-				    			<i class="material-icons">
-									done
-								</i>	    			
-				    		</button>
+	               	<div class="food-prefs">
+		            <div id="content_1" class="tabcontent"> 
+			            <div class="pref-column">
+				    		<div class="">
+					    		<input id="likes-input" placeholder="likes">
+					    		<button class="input-button" onclick=${addLike}> 
+					    			<i class="material-icons">
+										done
+									</i>
+					    		</button>
+				    		</div>
+				    		<div class="pref-list">
+				    			${state.people[id] ? state.people[id]["likes"].slice(0).reverse().map( x => listRow(x, "likes")) : null}
+				    		</div>
 			    		</div>
-			    		<div class="pref-list">
-			    			${state.people[id] ? state.people[id]["restrictions"].slice(0).reverse().map( x => listRow(x, "restrictions")) : null}
+		            </div> 
+		            <div id="content_2" class="tabcontent" style="display:none;">
+	    		    	<div class="pref-column">
+				    		<div class="">
+					    		<input id="dislikes-input" placeholder="dislikes">
+					    		<button class="input-button" onclick=${addDislike}> 
+					    			<i class="material-icons">
+										done
+									</i>
+					    		</button>
+				    		</div>
+				    		<div class="pref-list">
+				    			${state.people[id] ? state.people[id]["dislikes"].slice(0).reverse().map( x => listRow(x, "dislikes")) : null}
+				    		</div>
 			    		</div>
-		    		</div>
-	            </div>
+		            </div>
+		            <div id="content_3" class="tabcontent" style="display:none;">
+	    		    	<div class="pref-column">
+				    		<div class="">
+								<input id="restrictions-input" placeholder="restrictions">
+					    		<button class="input-button" onclick=${addRestriction}> 	
+					    			<i class="material-icons">
+										done
+									</i>	    			
+					    		</button>
+				    		</div>
+				    		<div class="pref-list">
+				    			${state.people[id] ? state.people[id]["restrictions"].slice(0).reverse().map( x => listRow(x, "restrictions")) : null}
+				    		</div>
+			    		</div>
+		            </div>
+		    	</div>
 	    	</div>
 	    </div>
-	  </div>
 	  `
 
 	function showNameInput(hasName) {
