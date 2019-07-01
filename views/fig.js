@@ -9,7 +9,7 @@ var mealsView = require('../components/mealsview.js');
 var peopleView = require('../components/peopleview.js');
 var mealDisplay = require('../components/mealdisplay.js');
 var personDisplay = require('../components/persondisplay.js');
-var editGuestsDisplay = require('../components/editguestsdisplay.js');
+var editMealDisplay = require('../components/editmealdisplay.js');
 
 var TITLE = 'fig'
 
@@ -62,7 +62,7 @@ function fig(state, emit) {
 	    		${state.personDisplay['display'] ? personDisplay(state, emit) : console.log('')}
 	    	</div>
 	    	<div>
-	    		${state.editGuestsDisplay['display'] ? editGuestsDisplay(state, emit) : console.log('')}
+	    		${state.editMealDisplay['display'] ? editMealDisplay(state, emit) : console.log('')}
 	    	</div>
 	    </div>
     </body>

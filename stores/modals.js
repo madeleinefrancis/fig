@@ -88,8 +88,8 @@ function store (state, emitter) {
   	})
 
   	emitter.on('edit guests', function(data){
-  		state.editGuestsDisplay['display'] = true
-  		state.editGuestsDisplay['id'] = data
+  		state.editMealDisplay['display'] = true
+  		state.editMealDisplay['id'] = data
   		emitter.emit(state.events.RENDER)
   	})  	
 
@@ -125,7 +125,7 @@ function store (state, emitter) {
 	emitter.on('DOMContentLoaded', function() {
 		emitter.on('close meals view', function() {
 			state.mealsView = 'invisible'
-			state.editGuestsDisplay['display'] = false
+			state.editMealDisplay['display'] = false
 			state.mealDisplay['display'] = false
 			emitter.emit(state.events.RENDER)
 		})
@@ -152,7 +152,7 @@ function store (state, emitter) {
 		state.mealsView = 'invisible'
 		state.mealDisplay['display'] = false
 		state.personDisplay['display'] = false
-		state.editGuestsDisplay['display'] = false
+		state.editMealDisplay['display'] = false
 		if (state.datePicker) state.datePicker.destroy()
 	})
 
