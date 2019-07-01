@@ -47,9 +47,10 @@ ul {
 }
 
 .display-meal-name {
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 10px;
+  display: flex;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 10px;
 }
 
 .display-meal-columns {
@@ -117,6 +118,10 @@ ul {
     align-items: center;
 }
 
+.active {
+  font-weight: 700;
+}
+
 #add-person-button {
 	background-color: lightgray;
 }
@@ -131,10 +136,6 @@ ul {
 
 #meals-button {
     background-color: beige;
-}
-
-#close-buttons {
-
 }
 
 #complete-buttons {
@@ -245,6 +246,18 @@ ul {
 .pref-column {
     display: inline-block;
     height: 80vh;
+}
+
+#complete-meal-display-button {
+    position: absolute;
+    top: 2.7vw;
+    left: 4.5vw;
+}
+
+#edit-meal-display-button {
+    position: absolute;
+    top: 2.5vw;
+    right: 5vw;
 }
 
 

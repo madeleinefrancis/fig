@@ -230,10 +230,13 @@ function store (state, emitter) {
 
 	emitter.on('DOMContentLoaded', function() {
 		$.get('/get-state', function(data, status) {
-			if (data === null || data.match(/^ *$/) !== null) {
-				var redisState = JSON.parse(data)
+			if (data) {
+				var redisState = JSON.parse(JSON.parse(data))
+				state.redisState = redisState
 				state.alphNameIDs = redisState.alphNameIDs
 				state.alphaMealIDs = redisState.alphaMealIDs
+				state.upcomingMeals = redisState.upcomingMeals
+				state.pastMeals = redisState.pastMeals
 				state.meals = redisState.meals
 				state.mealsWDatesIDs = redisState.mealsWDatesIDs
 				state.people = redisState.people
@@ -253,7 +256,10 @@ function store (state, emitter) {
 				        maxDate: new Date(2020, 12, 31),
 				        yearRange: [2019,2020],
 				        onSelect: function() {
+				        	state.dateTest = this.getDate()
+				        	state.momentTest = this.getMoment()
 				       		state.meals[data["id"]]["date"]	= this.getDate()
+				       		console.log(this.getMoment().format('Do MMMM YYYY'))
 				        }
 				    });
 

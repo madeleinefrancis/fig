@@ -100,7 +100,7 @@ module.exports = function (state, emit, id) {
 		if (value.length > 0) {
 			for (var key in state.meals) {
 				if (state.meals[key]["name"] === value) {
-					alert("a person with this name already exists")
+					alert("a meal with this name already exists")
 					return
 				}
 			}
