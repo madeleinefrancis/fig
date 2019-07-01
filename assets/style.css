@@ -271,6 +271,7 @@ ul {
 .tab-menu {
   margin-top: 5vh;
   display: flex;
+  text-align: center;
 }
 
 .tabmenu {
