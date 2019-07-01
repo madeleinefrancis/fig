@@ -8,8 +8,8 @@ module.exports = function (state, emit) {
         <div class="modal-wrapper ${state.mealsView}">
             <div class="modal-content-wrapper flex-stack">  
                 <div class="tab-menu">
-                    <div id="tb_1" class="tabmenu active" content="meal_content_1" onclick=${rudrSwitchTab}>Upcoming</div>
-                    <div id="tb_2" class="tabmenu" content="meal_content_2" onclick=${rudrSwitchTab}>Past</div>
+                    <div id="meal_tb_1" class="tabmenu active" content="meal_content_1" onclick=${rudrSwitchTab}>Upcoming</div>
+                    <div id="meal_tb_2" class="tabmenu" content="meal_content_2" onclick=${rudrSwitchTab}>Past</div>
                 </div>
                 <div class="meals-view-content">
                     <div id="meal_content_1" class="tabcontent">
@@ -24,13 +24,12 @@ module.exports = function (state, emit) {
   		`
 
 	function mealRow (id) {
-		var formatedDate = formatDate(id)
 		return html`
             <div class="row">
     			<div onclick=${displayMeal} mealID=${id}>
     				${state.meals[id]["name"]}
                     - 
-                    ${state.meals[id]["date"].toDateString()}
+                    ${state.meals[id]["date"]}
     			</div>
                 <div class="deletable-list-column" mealID=${id} onclick=${deleteMeal}>
                    X
@@ -62,7 +61,7 @@ module.exports = function (state, emit) {
     }
 
 	function formatDate (id) {
-		var date = state.meals[id]["date"]
+		var date = state.meals[id].date
 	}
 
 	function displayMeal () {
