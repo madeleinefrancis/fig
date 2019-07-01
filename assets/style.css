@@ -33,9 +33,17 @@ ul {
   }
 } 
 
+.date-text {
+
+}
+
 .deletable-list {
     display: flex;
     flex-wrap: nowrap;
+}
+
+.deletable-list-column {
+  padding-left: 3vw;
 }
 
 .display-meal-name {
@@ -68,6 +76,14 @@ ul {
 
 .meal-column-title {
 
+}
+
+.row {
+  display: flex;
+}
+
+.meals-view-content {
+  margin-top: 3vh;
 }
 
 #add-guest {

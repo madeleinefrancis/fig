@@ -11,11 +11,13 @@ module.exports = function (state, emit) {
                     <div id="tb_1" class="tabmenu active" content="meal_content_1" onclick=${rudrSwitchTab}>Upcoming</div>
                     <div id="tb_2" class="tabmenu" content="meal_content_2" onclick=${rudrSwitchTab}>Past</div>
                 </div>
-                <div id="meal_content_1" class="tabcontent">
-                    ${state.upcomingMeals.map(mealRow)}                     
-                </div> 
-                <div id="meal_content_2" class="tabcontent" style="display:none;">
-                    ${state.pastMeals.map(mealRow)}
+                <div class="meals-view-content">
+                    <div id="meal_content_1" class="tabcontent">
+                        ${state.upcomingMeals.map(mealRow)}                     
+                    </div> 
+                    <div id="meal_content_2" class="tabcontent" style="display:none;">
+                        ${state.pastMeals.map(mealRow)}
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,12 +26,16 @@ module.exports = function (state, emit) {
 	function mealRow (id) {
 		var formatedDate = formatDate(id)
 		return html`
-			<div onclick=${displayMeal} mealID=${id}>
-				${state.meals[id]["name"]}
-			</div>
-        <div class="deletable-list-column" mealID=${id} onclick=${deleteMeal}>
-           X
-        </div>
+            <div class="row">
+    			<div onclick=${displayMeal} mealID=${id}>
+    				${state.meals[id]["name"]}
+                    - 
+                    ${state.meals[id]["date"].toDateString()}
+    			</div>
+                <div class="deletable-list-column" mealID=${id} onclick=${deleteMeal}>
+                   X
+                </div>
+            </div>
 		`
 	}
 
