@@ -5,24 +5,23 @@ var html = require('choo/html')
 module.exports = function (state, emit) {
   // create html template
   	return html`
-        <div class="modal-wrapper ${state.mealsView}">  
-            <div class=flex-stack">
+        <div class="modal-wrapper ${state.mealsView}">
+            <div class="modal-content-wrapper flex-stack">  
                 <div class="tab-menu">
                     <div id="tb_1" class="tabmenu active" content="meal_content_1" onclick=${rudrSwitchTab}>Upcoming</div>
                     <div id="tb_2" class="tabmenu" content="meal_content_2" onclick=${rudrSwitchTab}>Past</div>
                 </div>
-                 
-                <div id="meal_content_1" class="tabcontent"> 
-                    Content of the first tab.
+                <div id="meal_content_1" class="tabcontent">
+                    ${state.upcomingMeals.map(mealRow)}                     
                 </div> 
                 <div id="meal_content_2" class="tabcontent" style="display:none;">
-                    Content of the second tab.
+                    ${state.pastMeals.map(mealRow)}
                 </div>
             </div>
         </div>
   		`
 
-	function datedMealRow (id) {
+	function mealRow (id) {
 		var formatedDate = formatDate(id)
 		return html`
 			<div onclick=${displayMeal} mealID=${id}>
@@ -56,14 +55,6 @@ module.exports = function (state, emit) {
         }
     }
 
-	function mealRow (id) {
-		return html`
-			<div>
-				${state.meals[id]["name"]}
-			</div>
-		`
-	}
-
 	function formatDate (id) {
 		var date = state.meals[id]["date"]
 	}
@@ -82,7 +73,6 @@ module.exports = function (state, emit) {
         for (i = 0; i < x.length; i++) {
             x[i].style.display = 'none'; // hide all tab content
         }
-        // debugger
         document.getElementById(content).style.display = 'block'; // display the content of the tab we need
      
         // now we get all tab menu items by class names (use the next code only if you need to highlight current tab)

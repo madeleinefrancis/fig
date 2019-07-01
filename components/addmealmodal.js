@@ -24,10 +24,12 @@ module.exports = function (state, emit, id) {
 		    	<div id="date-container">
 	    			<input type="text" class="datepicker" id="datepicker" autocomplete="off" placeholder="date">
 		    	</div>
+	    	</div>
+	    	<div id="guests-label">
+    			Guests
 	    	</div>	
 	    	<div id="member-columns">
 	    		<div class="column" id="meal-members-column">
-	    			Guests
 	    			<ul class="connectedSortable" id="sortable1">
 	    			</ul>
 	    		</div>
@@ -88,6 +90,10 @@ module.exports = function (state, emit, id) {
 		var input = document.getElementById('meal-name-input')
 		if (!input.value) {
 			alert("please add a name")
+			return
+		}
+		if (!state.meals[id]["date"]) {
+			alert("please add a date")
 			return
 		}
 		var value = input.value

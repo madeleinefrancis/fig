@@ -28,6 +28,7 @@ app.listen(server)
 app.get('/test', (req, res) => res.send('Hello World!'))
 
 app.post('/enter-state', function (req, res) {
+	console.log("whwhwhw")
 	res.send('hihihi')
 	redis.set('state', JSON.stringify(req.body.state))
 })

@@ -81,6 +81,12 @@ ul {
 	height: 100%;
 }
 
+#guests-label {
+    margin-right: auto;
+    margin-left: 13vw;
+    margin-top: 2vh;
+}
+
 .inner-button {
     border-width: 1px;
     border-color: black;
